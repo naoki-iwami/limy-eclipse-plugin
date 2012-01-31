@@ -1,0 +1,14 @@
+<html xmlns:lxslt="http://xml.apache.org/xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>${projectName} Reports</title>
+</head>
+<frameset rows="70,*">
+<frame src="menu.html" name="top">
+#if ($qalab)
+	<frame src="qalab.html" name="bottom">
+#else
+	<frame src="../javadoc/index.html" name="bottom">
+#end
+</frameset>
+</html>

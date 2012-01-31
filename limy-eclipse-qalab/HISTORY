@@ -1,0 +1,8 @@
+HISTORY
+
+
+1.2.6
+EncodingがUTF-8のときCheckstyleがうまく動かない不具合を修正。
+UmlGraphのhide設定が正規表現化されていなかったのを修正。
+
+1.2.5

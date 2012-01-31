@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>limy-eclipse-core</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.pde.ManifestBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.pde.SchemaBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.limy.eclipse.qalab.LimyQalabBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.pde.PluginNature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.limy.eclipse.qalab.LimyQalabNature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>limy-checks.xml</name>
+			<type>1</type>
+			<location>C:/var/doc/limy-checks.xml</location>
+		</link>
+		<link>
+			<name>limy-pmd-ruleset.xml</name>
+			<type>1</type>
+			<location>C:/var/doc/limy-pmd-ruleset.xml</location>
+		</link>
+	</linkedResources>
+</projectDescription>

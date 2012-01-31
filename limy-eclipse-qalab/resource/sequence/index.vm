@@ -1,0 +1,13 @@
+#macro(write $bean)
+#if ($bean.resultValue)
+$!{bean.instanceName}:$!{bean.containerName}.${bean.callName} -> $bean.resultValue {
+#else
+$!{bean.instanceName}:$!{bean.containerName}.${bean.callName} {
+#end
+	#foreach ($child in $bean.children)
+		#write($child)
+	#end
+}
+#end
+
+#write($root)

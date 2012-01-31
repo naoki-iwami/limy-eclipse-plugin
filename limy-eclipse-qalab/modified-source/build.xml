@@ -1,0 +1,11 @@
+<project name="modified-all" default="allzip" basedir=".">
+	
+	<target name="allzip">
+		<ant dir="cobertura-1.9" target="makezip" />
+		<ant dir="javancss-27.48" target="makezip" />
+		<ant dir="pmd-3.9" target="makezip" />
+		<ant dir="qalab-1.0" target="makezip" />
+		<ant dir="UMLGraph-4.8" target="makezip" />
+	</target>
+		
+</project>

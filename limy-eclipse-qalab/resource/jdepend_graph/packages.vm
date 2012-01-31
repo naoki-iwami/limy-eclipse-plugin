@@ -1,0 +1,24 @@
+#if ($packagePrefix.length() > 0)
+	"BASE = '$packagePrefix'" [
+ 		color=".7 .3 1.0"
+		shape="Mdiamond"
+##		style=filled
+	]
+#end
+
+#foreach ($package in $Util.gets($JDepend, "Packages.Package"))
+	"$package.name" [
+		#if ($packagePrefix.length() > 0)
+			label="BASE..$Util.removePrefix($package.name, $packagePrefix)"
+		#else
+			label="$package.name | Total Classes: $!package.Stats.TotalClasses"
+		#end
+		shape="record"
+		color=".99 #if ($package.Stats.D) $package.Stats.D #else 0.0 #end .9"
+		style=filled
+	];
+#foreach ($depend in $Util.gets($package, "DependsUpon.Package"))
+	"$package.name" -> #if ($depend.anonText) "$depend.anonText" #else "$depend" #end
+#end
+
+#end

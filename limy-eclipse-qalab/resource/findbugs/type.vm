@@ -1,0 +1,28 @@
+#set ($sources = $Util.getGroupMap($Util.gets($BugCollection, "file.BugInstance"), "type"))
+#foreach ($entry in $sources.entrySet())
+	
+	<h3>$entry.key</h3>
+	
+	<table class="log" border="0" cellpadding="5" cellspacing="2" width="100%">
+	  <tr>
+		<th>File</th>
+		<th>Error Description</th>
+		<th width="30">Line</th>
+	  </tr>
+
+	#set ($mode = 0)
+
+	#foreach ($subEntry in $entry.value)
+		#set ($parent = $Util.searchParent($BugCollection, $subEntry))
+
+		<tr class=#if ($mode % 2 == 0) "a" #else "b" #end>
+		  <td>$Util.translateBackSlash($parent.classname)</td>
+		  <td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#$subEntry.type">$subEntry.message</a></td>
+		  <td><a href="javasrc/${Util.removeExt($Util.translate($parent.classname, ".", "/"))}.html#${subEntry.line}">${subEntry.line}</a></td>
+		</tr>
+	    #set ($mode = $mode + 1)
+	#end
+	</table>
+	<br />
+	
+#end

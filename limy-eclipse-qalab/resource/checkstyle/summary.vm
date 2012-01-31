@@ -1,0 +1,12 @@
+<h3>Summary</h3>
+
+<table class="log" border="0" cellpadding="5" cellspacing="2" width="100%">
+<tr>
+	<th>Files</th>
+	<th>Errors</th>
+</tr>
+<tr class="a">
+	<td>$Util.count($checkstyle, "file")</td>
+	<td>$Util.count($checkstyle, "file.error")</td>
+</tr>
+</table>

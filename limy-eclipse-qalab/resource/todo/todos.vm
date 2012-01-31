@@ -1,0 +1,49 @@
+#macro(translate $str $oldChar $newChar)
+	$Util.translate($str, $oldChar, $newChar)
+#end
+
+#macro(translate_ext $str $oldChar $newChar)
+	$Util.removeExt($Util.translate($str, $oldChar, $newChar))
+#end
+
+#macro(writeFile $file)
+  #if ($file.error)
+    <h3>File #translate($file.name '\' '/')</h3>
+	<table class="log" border="0" cellpadding="2" cellspacing="2" width="100%">
+	<tr>
+	<th>TODO comment</th><th width="30">Line</th>
+	</tr>
+  	#write($file.name $file.error 0)
+	</table>
+  #end
+  #if ($file.errors)
+    <h3>File #translate($file.name '\' '/')</h3>
+	<table class="log" border="0" cellpadding="2" cellspacing="2" width="100%">
+	<tr>
+	<th>TODO comment</th><th width="30">Line</th>
+	</tr>
+	#set ($mode = 0)
+    #foreach ($error in $file.errors)
+  	  #write($file.name $error $mode)
+      #set ($mode = $mode + 1)
+  	#end
+	</table>
+  #end
+#end
+
+#macro(write $name $error $mode)
+  <tr class=#if ($mode % 2 == 0) "a" #else "b" #end>
+	<td>
+	$error.message
+	</td>
+    <td><a href="javasrc/#translate_ext($name '\' '/').html#$error.line">$error.line</a></td>
+  </tr>
+#end
+
+#if ($todo.file)
+  #writeFile($todo.file)
+#end
+
+#foreach ($file in $todo.files)
+  #writeFile($file)
+#end

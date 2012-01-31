@@ -1,0 +1,36 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: LimyEclipse Core Plug-in
+Bundle-SymbolicName: org.limy.eclipse.core; singleton:=true
+Bundle-Version: 1.5.0
+Bundle-Activator: org.limy.eclipse.core.LimyEclipsePlugin
+Bundle-Vendor: limy.org
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jface.text,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.ide,
+ org.eclipse.core.resources,
+ org.eclipse.jdt.core,
+ org.eclipse.jdt.ui,
+ org.eclipse.ui.editors,
+ org.apache.ant
+Eclipse-AutoStart: true
+Export-Package: org.apache.velocity,
+ org.apache.velocity.context,
+ org.limy.common,
+ org.limy.eclipse.common,
+ org.limy.eclipse.common.io,
+ org.limy.eclipse.common.jdt,
+ org.limy.eclipse.common.jface,
+ org.limy.eclipse.common.resource,
+ org.limy.eclipse.common.swt,
+ org.limy.eclipse.common.ui,
+ org.limy.eclipse.core,
+ org.limy.velocity,
+ org.limy.velocity.task,
+ org.limy.velocity.xml,
+ org.limy.xml
+Bundle-ClassPath: .,
+ resource/lib/velocity-dep-1.5.jar

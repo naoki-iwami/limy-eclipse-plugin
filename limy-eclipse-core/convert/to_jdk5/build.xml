@@ -1,0 +1,118 @@
+<project name="limy-eclipse-convert-jdk5" basedir="." default="convert">
+
+	<property name="otherPath" value="../../../../eclipse-plugin-jdk5" />
+	<property name="rootDir" value="../../../" />
+		
+	<target name="convert">
+
+		<delete dir="${otherPath}"></delete>
+		<mkdir dir="${otherPath}" />
+		
+		<copy todir="${otherPath}/limy-eclipse-core">
+			<fileset dir="${rootDir}/limy-eclipse-core">
+				<include name="icons/**" />
+				<include name="META-INF/**" />
+				<include name="resource/**" />
+				<include name="src/**" />
+				<include name=".classpath" />
+				<include name=".project" />
+				<include name="build.properties" />
+				<include name="plugin*.properties" />
+				<include name="plugin.xml" />
+				<include name="COPYING" />
+			</fileset>
+		</copy>
+
+		<copy todir="${otherPath}/limy-eclipse-code">
+			<fileset dir="${rootDir}/limy-eclipse-code">
+				<include name="icons/**" />
+				<include name="META-INF/**" />
+				<include name="resource/**" />
+				<include name="src/**" />
+				<include name="test/src/**" />
+				<include name=".classpath" />
+				<include name=".project" />
+				<include name="build.properties" />
+				<include name="plugin*.properties" />
+				<include name="plugin.xml" />
+				<include name="COPYING" />
+			</fileset>
+		</copy>
+
+		<copy todir="${otherPath}/limy-eclipse-prop">
+			<fileset dir="${rootDir}/limy-eclipse-prop">
+				<include name="icons/**" />
+				<include name="META-INF/**" />
+				<include name="resource/**" />
+				<include name="src/**" />
+				<include name="template/**" />
+				<include name="test/src/**" />
+				<include name=".classpath" />
+				<include name=".project" />
+				<include name="build.properties" />
+				<include name="plugin*.properties" />
+				<include name="plugin.xml" />
+				<include name="COPYING" />
+			</fileset>
+		</copy>
+
+		<copy todir="${otherPath}/limy-eclipse-qalab">
+			<fileset dir="${rootDir}/limy-eclipse-qalab">
+				<include name="icons/**" />
+				<include name="META-INF/**" />
+				<include name="resource/**" />
+				<include name="src/**" />
+				<include name="template/**" />
+				<include name="test/src/**" />
+				<include name=".classpath" />
+				<include name=".project" />
+				<include name="build.properties" />
+				<include name="plugin*.properties" />
+				<include name="plugin.xml" />
+				<include name="COPYING" />
+				<include name="COPYRIGHT" />
+				<include name="HISTORY" />
+				<include name="README" />
+			</fileset>
+		</copy>
+
+		<copy todir="${otherPath}/limy-eclipse-web">
+			<fileset dir="${rootDir}/limy-eclipse-web">
+				<include name="icons/**" />
+				<include name="META-INF/**" />
+				<include name="resource/**" />
+				<include name="src/**" />
+				<include name="template/**" />
+				<include name="test/src/**" />
+				<include name=".classpath" />
+				<include name=".project" />
+				<include name="build.properties" />
+				<include name="plugin*.properties" />
+				<include name="plugin.xml" />
+				<include name="COPYING" />
+				<include name="COPYRIGHT" />
+				<include name="HISTORY" />
+				<include name="README" />
+			</fileset>
+		</copy>
+
+		<copy todir="${otherPath}/limy-eclipse-feature">
+			<fileset dir="${rootDir}/limy-eclipse-feature">
+			</fileset>
+		</copy>
+
+		<copy todir="${otherPath}/limy-eclipse-update">
+			<fileset dir="${rootDir}/limy-eclipse-update">
+			</fileset>
+		</copy>
+
+		<copy tofile="${otherPath}/limy-eclipse-feature/feature.xml" overwrite="on"
+			file="./feature_feature.xml" />
+		<copy tofile="${otherPath}/limy-eclipse-update/build.properties" overwrite="on"
+			file="./update_build.properties" />
+		<copy tofile="${otherPath}/limy-eclipse-update/site.xml" overwrite="on"
+			file="./update_site.xml" />
+		
+	</target>
+	
+</project>

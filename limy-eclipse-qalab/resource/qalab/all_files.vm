@@ -1,0 +1,23 @@
+#macro(translate $str $oldChar $newChar)
+	$Util.translate($str, $oldChar, $newChar)
+#end
+
+#macro(write $file $mode)
+	<tr class=#if ($mode % 2 == 0) "a" #else "b" #end>
+		<td><a href="${Util.removeExt($file.id)}.html">#translate($file.id "_" "/")</a></td>
+	</tr>
+#end
+
+#set ($dummy = $Util.sortKeyAsc($qalab.files, "id"))
+
+<table class="log" border="0" cellpadding="2" cellspacing="2" width="80%" align="center">
+<tr>
+	<th width="45%">File</th>
+</tr>
+
+#set ($mode = 0)
+#foreach ($file in $qalab.files)
+	#write($file $mode)
+#end
+
+</table>

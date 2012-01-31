@@ -1,0 +1,13 @@
+<FindBugsFilter>
+  <Match>
+    <Or>
+      <Class name="org.limy.eclipse.qalab.Messages"/>
+      <Package name="~dummy.*"/>
+      <Package name="~com.*"/>
+      <Package name="~cyvis.*"/>
+      <Package name="~net.*"/>
+      <Package name="~org\.limy\.eclipse\.qalab\.umlgraph.*"/>
+      <Package name="~org\.limy\.eclipse\.code\.stub.*"/>
+    </Or>
+  </Match>
+</FindBugsFilter>

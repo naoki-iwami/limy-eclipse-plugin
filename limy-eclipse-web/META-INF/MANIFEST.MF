@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: LimyEclipse Web Plug-in
+Bundle-SymbolicName: org.limy.eclipse.web;singleton:=true
+Bundle-Version: 1.3.6
+Bundle-Activator: org.limy.eclipse.web.LimyWebPlugin
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.limy.eclipse.core,
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.ide,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime.compatibility,
+ org.eclipse.jdt.ui
+Eclipse-LazyStart: true
+Bundle-Vendor: limy.org

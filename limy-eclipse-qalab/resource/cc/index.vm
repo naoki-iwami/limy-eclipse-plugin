@@ -1,0 +1,13 @@
+
+digraph G {
+	edge [arrowhead="none"];
+	node [shape="box", color="white", fontsize=10, width=0, height=0];
+	graph [ranksep=0.1];
+
+#foreach ($line in $lines)
+#if ($enableSource)
+	$line.from [label="$line.text"];
+#end
+	$line.from -> $line.to [weight=$line.weight];
+#end
+}

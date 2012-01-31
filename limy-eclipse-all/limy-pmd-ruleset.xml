@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+
+<ruleset name="Favorites" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+
+  <rule ref="rulesets/basic.xml">
+    <exclude name="EmptyCatchBlock"/>
+  </rule>"limy-checks.xml"
+  <rule ref="rulesets/basic.xml/EmptyCatchBlock">
+      <properties>
+         <property name="allowCommentedBlocks" value="true"/>
+      </properties>
+  </rule>
+
+  <rule ref="rulesets/braces.xml"/>
+
+  <rule ref="rulesets/clone.xml"/>
+
+  <rule ref="rulesets/codesize.xml">
+    <exclude name="NPathComplexity"/>
+    <exclude name="CyclomaticComplexity"/>
+    <exclude name="ExcessiveParameterList"/>
+  </rule>
+
+  <rule ref="rulesets/controversial.xml">
+    <exclude name="OnlyOneReturn"/>
+    <exclude name="AtLeastOneConstructor"/>
+    <exclude name="SingularField"/>
+    <exclude name="DataflowAnomalyAnalysis"/>
+  </rule>
+  
+  <rule ref="rulesets/coupling.xml"/>
+
+  <rule ref="rulesets/design.xml">
+    <exclude name="UseSingleton"/>
+    <exclude name="ConfusingTernary"/>
+    <exclude name="SimpleDateFormatNeedsLocale"/>
+    <exclude name="ImmutableField"/>
+    <exclude name="UseLocaleWithCaseConversions"/>
+  </rule>
+
+  <rule ref="rulesets/finalizers.xml"/>
+  
+  <rule ref="rulesets/imports.xml">
+    <exclude name="UnusedImports"/><!-- check in Checkstyle -->
+  </rule>
+
+  <rule ref="rulesets/logging-jakarta-commons.xml"/>
+
+  <rule ref="rulesets/logging-java.xml"/>
+  
+  <rule ref="rulesets/migrating.xml"/>
+
+  <rule ref="rulesets/naming.xml">
+    <exclude name="ShortVariable"/>
+    <exclude name="VariableNamingConventions"/>
+    <exclude name="LongVariable"/>
+  </rule>
+  <rule ref="rulesets/naming.xml/LongVariable">
+      <properties>
+         <property name="minimum" value="24"/>
+      </properties>
+  </rule>
+
+  <rule ref="rulesets/optimizations.xml">
+    <exclude name="LocalVariableCouldBeFinal"/>
+    <exclude name="MethodArgumentCouldBeFinal"/>
+    <exclude name="AvoidInstantiatingObjectsInLoops"/>
+    <exclude name="UseStringBufferForStringAppends"/>
+  </rule>
+  
+  <rule ref="rulesets/strictexception.xml"/>
+  
+  <rule ref="rulesets/strings.xml">
+    <exclude name="AvoidDuplicateLiterals"/>
+  </rule>
+
+  <rule ref="rulesets/unusedcode.xml"/>
+
+</ruleset>

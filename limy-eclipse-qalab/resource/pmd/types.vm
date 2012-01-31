@@ -1,0 +1,32 @@
+#set ($sources = $Util.getGroupMap($Util.gets($pmd, "file.violation"), "rule"))
+#foreach ($entry in $sources.entrySet())
+	
+	<h3>$entry.key</h3>
+	
+	<table class="log" border="0" cellpadding="5" cellspacing="2" width="100%">
+	  <tr>
+		<th width="50">Priority</th>
+		<th>File</th>
+		<th>Error Description</th>
+		<th width="30">Line</th>
+	  </tr>
+
+	#set ($mode = 0)
+
+	#foreach ($subEntry in $entry.value)
+		#set ($parent = $Util.searchParent($pmd, $subEntry))
+
+		<tr class=#if ($mode % 2 == 0) "a" #else "b" #end>
+	      <td>
+	        <div align="center" class="p${subEntry.priority}">${subEntry.priority}</div>
+	      </td>
+		  <td>$Util.translateBackSlash($parent.name)</td>
+		  <td><a href="$subEntry.externalInfoUrl">$subEntry.anontext</a></td>
+		  <td><a href="javasrc/${Util.removeExt($Util.translateBackSlash($parent.name))}.html#${subEntry.beginline}">${subEntry.beginline}</a></td>
+		</tr>
+	    #set ($mode = $mode + 1)
+	#end
+	</table>
+	<br />
+	
+#end

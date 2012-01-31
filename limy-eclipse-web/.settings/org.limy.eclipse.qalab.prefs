@@ -1,0 +1,5 @@
+#Fri Jun 15 21:57:07 JST 2007
+buildProperties=build_qa.properties
+buildXml=build_qa.xml
+dotExe=C\:\\Program Files\\ATT\\Graphviz\\bin\\dot.exe
+eclipse.preferences.version=1

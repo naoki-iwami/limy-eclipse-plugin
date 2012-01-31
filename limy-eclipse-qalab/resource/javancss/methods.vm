@@ -1,0 +1,62 @@
+#macro(methodUrl $name)
+	$Util.methodUrl($name)
+#end
+
+<h2>Methods</h2>
+<table class="details" border="0" width="100%" id="methods">
+  <thead>
+  <tr>
+    <td class="header">No.</td>
+    <td class="header">NCSS</td>
+    <td class="header">CCN</td>
+    <td class="header">Javadoc</td>
+    <td class="header">Method</td>
+  </tr>
+  </thead>
+
+  <tbody>
+  #set ($nr = 0)
+  #set ($totalNcss = 0)
+  #set ($totalCcn = 0)
+  #set ($totalJavadocs = 0)
+  #foreach ($func in $Util.gets($javancss, "functions.function"))
+    #set ($nr = $nr + 1)
+    <tr>
+      <td>$nr</td>
+      <td>$func.ncss</td>
+      #if ($Util.toInt($func.ccn) > 9)
+        <td><font color="red">$func.ccn</font></td>
+      #else
+        <td>$func.ccn</td>
+      #end
+      #if ($Util.toInt($func.javadocs) < 1)
+        <td><font color="red">$func.javadocs</font></td>
+      #else
+        <td>$func.javadocs</td>
+      #end
+      <td><a href="javasrc/#methodUrl($func.name)#$!func.lineNumber">$func.name</a></td>
+    </tr>
+    #set ($totalNcss = $totalNcss + $Util.toInt($func.ncss))
+    #set ($totalCcn = $totalCcn + $Util.toInt($func.ccn))
+    #set ($totalJavadocs = $totalJavadocs + $Util.toInt($func.javadocs))
+  #end
+  </tbody>
+
+  <tr>
+    <td colspan="4">Average Method NCSS:</td>
+    <td>$Util.avg($totalNcss, $nr, 2)</td>
+  </tr>
+  <tr>
+    <td colspan="4">Average Method CCN:</td>
+    <td>$Util.avg($totalCcn, $nr, 2)</td>
+  </tr>
+  <tr>
+    <td colspan="4">Average Method Javadocs:</td>
+    <td>$Util.avg($totalJavadocs, $nr, 2)</td>
+  </tr>
+  <tr>
+    <td colspan="4">Program NCSS:</td>
+    <td>$allNcss</td>
+  </tr>
+</table>
+<p/>

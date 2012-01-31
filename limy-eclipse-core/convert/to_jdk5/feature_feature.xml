@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.limy.eclipse.feature"
+      label="Limy Eclipse Feature"
+      version="1.3.8"
+      provider-name="limy.org">
+   <install-handler/>
+
+   <description url="http://www.limy.org/program/eclipse_plugin/">
+      %description
+   </description>
+
+   <license url="http://www.gnu.org/licenses/gpl.html">
+      %license
+   </license>
+
+   <url>
+      <discovery label="Limy Eclipse Plugin (Eclipse 3.2)" url="http://www.limy.org/eclipse_plugin/jdk1.5/"/>
+   </url>
+
+   <plugin
+         id="org.limy.eclipse.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.limy.eclipse.code"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.limy.eclipse.web"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.limy.eclipse.prop"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.limy.eclipse.qalab"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

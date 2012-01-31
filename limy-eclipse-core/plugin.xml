@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <!-- Preference -->
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <!-- LimyEclipse -->
+      <page
+            name="LimyEclipse"
+            class="org.limy.eclipse.core.LimyPreferencePage"
+            id="org.limy.eclipse.core.LimyPreferencePage">
+      </page>
+   </extension>
+
+</plugin>

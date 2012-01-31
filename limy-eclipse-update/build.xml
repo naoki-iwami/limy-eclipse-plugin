@@ -1,0 +1,25 @@
+<project name="limy-eclipse-update" default="deploy-dest">
+
+	<property file="${basedir}/build.properties" />
+
+	<target name="deploy-dest">
+		<ftp server="192.168.1.5" userid="apache" password="massy7" remotedir="${remote.dir}">
+			<fileset dir="${basedir}">
+				<include name="plugins/**" />
+				<include name="features/**" />
+				<include name="web/**" />
+				<include name="site.xml" />
+			</fileset>
+		</ftp>
+		<delete dir="plugins" />
+		<delete dir="features" />
+	</target>
+
+	<target name="deploy-qalab" depends="">
+		<ftp server="192.168.1.5" userid="apache" password="massy7" remotedir="/mnt/data/opt/www/html/dest/limy-eclipse">
+			<fileset dir="${all.qalab.dest}">
+			</fileset>
+		</ftp>
+	</target>
+
+</project>

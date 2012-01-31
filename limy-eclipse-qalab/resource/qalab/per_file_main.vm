@@ -1,0 +1,23 @@
+
+
+
+#foreach ($file in $qalab.files)
+	$Util.write(
+		"per_file.vm",
+		$Util.concat($__BASE_PATH__, "/", $Util.removeExt($file.id), ".html"),
+		$__INNER_VALUES__,
+		$file
+		)
+#end
+
+#*
+#foreach ($file in $qalab.files)
+	$Util.write(
+		$__STYLE_FILE_DIR__,
+		$__OUTPUT_DIR__,
+		$__PARAMS__,
+		$Util.concat($Util.removeExt($file.id), ".html"),
+		$file,
+		"per_file.vm")
+#end
+*#

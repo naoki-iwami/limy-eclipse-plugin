@@ -1,0 +1,15 @@
+#Sat Sep 01 10:25:32 JST 2007
+checkstyleConfig=resources/limy-checks.xml
+checkstyleConfigType=1
+dotExe=C\:\\Program Files\\ATT\\Graphviz\\bin\\dot.exe
+eclipse.preferences.version=1
+enableJUnit=false
+enableJdepend=true
+enableUmlgraph=true
+excludeJdepends=org.eclipse.*\njava.*\norg.limy.eclipse.qalab.umlgraph.*\norg.limy.eclipse.qalab.umlgraph
+graphJavadoc=true
+ignorePackages=com\nnet\norg.limy.eclipse.qalab.umlgraph
+ignoreResources=src/com\nsrc/net\nsrc/cyvis
+jdependBasePackage=org.limy.eclipse.qalab
+pmdConfig=resources/limy-pmd-ruleset.xml
+pmdConfigType=1

@@ -1,0 +1,62 @@
+#macro(translate $str $oldChar $newChar)
+	$Util.translate($str, $oldChar, $newChar)
+#end
+
+<h2>Objects</h2>
+<table class="details" border="0" width="100%" id="objects">
+  <thead>
+  <tr>
+    <td class="header">No.</td>
+    <td class="header">NCSS</td>
+    <td class="header">Methods</td>
+    <td class="header">Classes</td>
+    <td class="header">Javadocs</td>
+    <td class="header">Class</td>
+  </tr>
+  </thead>
+
+  <tbody>
+  #set ($nr = 0)
+  #set ($totalNcss = 0)
+  #set ($totalMethods = 0)
+  #set ($totalClasses = 0)
+  #set ($totalJavadocs = 0)
+  #foreach ($object in $Util.gets($javancss, "objects.object"))
+    #set ($nr = $nr + 1)
+    <tr>
+      <td>$nr</td>
+      <td>$object.ncss</td>
+      <td>$object.functions</td>
+      <td>$object.classes</td>
+      <td>$object.javadocs</td>
+      <td><a href="javasrc/#translate($object.name '.' '/').html">$object.name</a></td>
+    </tr>
+    #set ($totalNcss = $totalNcss + $Util.toInt($object.ncss))
+    #set ($totalMethods = $totalMethods + $Util.toInt($object.functions))
+    #set ($totalClasses = $totalClasses + $Util.toInt($object.classes))
+    #set ($totalJavadocs = $totalJavadocs + $Util.toInt($object.javadocs))
+  #end
+  </tbody>
+  
+  <tr>
+    <td colspan="5">Average Object NCSS:</td>
+    <td>$Util.avg($totalNcss, $nr, 2)</td>
+  </tr>
+  <tr>
+    <td colspan="5">Average Object Methods:</td>
+    <td>$Util.avg($totalMethods, $nr, 2)</td>
+  </tr>
+  <tr>
+    <td colspan="5">Average Object Inner Classes:</td>
+    <td>$Util.avg($totalClasses, $nr, 2)</td>
+  </tr>
+  <tr>
+    <td colspan="5">Average Object Javadoc Comments:</td>
+    <td>$Util.avg($totalJavadocs, $nr, 2)</td>
+  </tr>
+  <tr>
+    <td colspan="5">Program NCSS:</td>
+    <td>$allNcss</td>
+  </tr>
+</table>
+<p/>  

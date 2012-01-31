@@ -1,0 +1,54 @@
+<h2>Packages</h2>
+<table class="details" border="0" width="100%" id="packages">
+  <thead>
+  <tr>
+    <td class="header">No.</td>
+    <td class="header">Classes</td>
+    <td class="header">Methods</td>
+    <td class="header">NCSS</td>
+    <td class="header">Javadocs</td>
+    <td class="header">Package</td>
+  </tr>
+  </thead>
+
+  <tbody>
+  #set ($nr = 0)
+  #set ($totalClasses = 0)
+  #set ($totalFunctions = 0)
+  #set ($totalNcss = 0)
+  #set ($totalJavadocs = 0)
+  #foreach ($package in $Util.gets($javancss, "packages.package"))
+    #set ($nr = $nr + 1)
+    <tr>
+      <td>$nr</td>
+      <td>$package.classes</td>
+      <td>$package.functions</td>
+      <td>$package.ncss</td>
+      <td>$package.javadocs</td>
+      <td>$package.name</td>
+    </tr>
+    #set ($totalClasses = $totalClasses + $Util.toInt($package.classes))
+    #set ($totalFunctions = $totalFunctions + $Util.toInt($package.functions))
+    #set ($totalNcss = $totalNcss + $Util.toInt($package.ncss))
+    #set ($totalJavadocs = $totalJavadocs + $Util.toInt($package.javadocs))
+  #end
+  </tbody>
+
+  <tr>
+    <td>&#160;</td>
+    <td>&#160;</td>
+    <td>&#160;</td>
+    <td>&#160;</td>
+    <td>&#160;</td>
+    <td>&#160;</td>
+  </tr>
+  <tr>
+    <td>&#160;</td>
+    <td>$totalClasses</td>  
+    <td>$totalFunctions</td>  
+    <td>$totalNcss</td>  
+    <td>$totalJavadocs</td>  
+    <td>Total</td>  
+  </tr>
+</table>
+<p/>

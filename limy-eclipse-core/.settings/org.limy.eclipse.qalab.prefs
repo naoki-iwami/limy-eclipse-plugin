@@ -1,0 +1,11 @@
+#Sat Sep 01 12:19:02 JST 2007
+checkstyleConfig=limy-checks.xml
+checkstyleConfigType=1
+dotExe=C\:\\Program Files\\ATT\\Graphviz\\bin\\dot.exe
+eclipse.preferences.version=1
+enableJUnit=false
+enableJdepend=true
+enableUmlgraph=true
+graphJavadoc=true
+pmdConfig=limy-pmd-ruleset.xml
+pmdConfigType=1

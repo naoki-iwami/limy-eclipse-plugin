@@ -1,0 +1,32 @@
+<html xmlns:lxslt="http://xml.apache.org/xslt">
+
+#macro(showLink $enable $viewStr $linkHref)
+  #if ($enable)
+	<a href="$linkHref" target="bottom">$viewStr</a>&nbsp;&nbsp;
+  #end
+#end
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+</head>
+<body>
+<h3>Report</h3>
+
+#showLink($qalab "QALab" "qalab.html")
+#showLink($checkstyle "Checkstyle" "../checkstyle_report.html")
+#showLink($findbugs "FindBugs" "../findbugs_report.html")
+#showLink($pmd "PMD" "../pmd_report.html")
+#showLink($pmd "PMD-CPD" "../pmd_cpd_report.html")
+#showLink($cobertura "Coverage" "../coverage/html/index.html")
+#showLink($cobertura "JUnit" "../junit/html/index.html")
+#showLink($javadoc "Javadoc" "../javadoc/index.html")
+#showLink($javancss "JavaNCSS" "../javancss_report.html")
+#showLink($jdepend "Jdepend" "../jdepend_report.html")
+#showLink($umlgraph "UmlGraph" "../umlgraph.html")
+#showLink($todo "TODO" "../todo_report.html")
+#showLink($qalab "QALab Mover" "../qalab-mover.html")
+
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<h3>Package Dependency Cycles</h3>
+
+#if (!$JDepend.Cycles.Packages)
+nothing
+#end
+
+#foreach ($package in $JDepend.Cycles.Packages)
+
+$package.Name Depends on 
+  #foreach ($d_package in $package.Packages)
+    #if ($package.Name != $d_package)
+      $d_package<br>
+    #end
+  #end
+  <br>
+#end

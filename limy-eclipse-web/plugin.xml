@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <!-- エディタ -->
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.limy.eclipse.web.velocityeditor.VelocityEditor"
+            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+            extensions="vm"
+            icon="icons/vm_obj.png"
+            id="org.limy.eclipse.web.velocityeditor.VelocityEditor"
+            name="Velocity Editor">
+      </editor>
+   </extension>
+
+   <!-- Preference -->
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="Web"
+            category="org.limy.eclipse.core.LimyPreferencePage"
+            class="org.limy.eclipse.web.preference.LimyWebPreferencePage"
+            id="org.limy.eclipse.web.preference.LimyWebPreferencePage">
+      </page>
+   </extension>
+
+
+</plugin>

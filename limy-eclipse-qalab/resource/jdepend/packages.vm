@@ -1,0 +1,89 @@
+#macro(write $package)
+  #if ($package.Stats)
+	  <tr align="right">
+	    <td align="left">$package.name</td>
+	    <td>$package.Stats.TotalClasses</td>
+	    <td>$package.Stats.ConcreteClasses</td>
+	    <td>$package.Stats.AbstractClasses</td>
+	    <td>$package.Stats.Ca</td>
+	    <td>$package.Stats.Ce</td>
+	    <td>$package.Stats.A</td>
+	    <td>$package.Stats.I</td>
+	    <td>$package.Stats.D</td>
+##	    <td>$package.Stats.V</td>
+	  </tr>
+  #end
+#end
+
+<h3>Package Metrics</h3>
+
+<table class="details" width="70%" align="center" id="packages">
+  <thead>
+  <tr>
+    <td class="header" width="20%">Package</td>
+    <td class="header" width="5%">Total Classes</td>
+    <td class="header" width="5%">Concrete Classes</td>
+    <td class="header" width="5%">Abstract Classes</td>
+    <td class="header" width="5%">Ca</td>
+    <td class="header" width="5%">Ce</td>
+    <td class="header" width="5%">A</td>
+    <td class="header" width="5%">I</td>
+    <td class="header" width="5%">D</td>
+##    <td class="header" width="5%">V</td>
+  </tr>
+  </thead>
+
+#if ($JDepend.Packages.Package)
+  #write($JDepend.Packages.Package)
+#end
+
+#foreach ($package in $JDepend.Packages.Packages)
+  #write($package)
+#end
+
+</table>
+
+
+<br>
+<div align="right">
+<table class="info" border="1" cellspacing="0" cellspacing="0">
+  <tr>
+    <td width="40%">Total Classes</td>
+    <td width="60%">パッケージに属する全クラス数</td>
+  </tr>
+  <tr>
+    <td>Concrete Classes</td>
+    <td>パッケージに属する完全（実体のある）クラス数</td>
+  </tr>
+  <tr>
+    <td>Abstract Classes</td>
+    <td>パッケージに属する抽象クラス（およびインターフェイス）数</td>
+  </tr>
+  <tr>
+    <td>Ca (Afferent Couplings)</td>
+    <td>このパッケージに依存しているパッケージ数</td>
+  </tr>
+  <tr>
+    <td>Ce (Efferent Couplings)</td>
+    <td>このパッケージが依存しているパッケージ数</td>
+  </tr>
+  <tr>
+    <td>A (Abstractness)</td>
+    <td>このパッケージの抽象度。全クラス数に対する抽象クラスの割合</td>
+  </tr>
+  <tr>
+    <td>I (Instability)</td>
+    <td>Ce / (Ce + Ca)。このパッケージの不安定度。<br>全依存パッケージ数に対する、このパッケージが依存しているパッケージ数の割合</td>
+  </tr>
+  <tr>
+    <td>D (Distance from the Main Sequence)</td>
+    <td>abs((A + I) - 1)。抽象度と不安定度の合計値が1からどれだけ離れているか<br>1に近くなると、バランスが崩れた状態であると言える</td>
+  </tr>
+#*
+  <tr>
+    <td>V (Volatility) </td>
+    <td></td>
+  </tr>
+*#
+</table>
+</div>

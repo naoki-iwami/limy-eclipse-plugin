@@ -1,0 +1,52 @@
+        ObjectTrhee three = null;
+      VARIABLE_DEF[6x8] 10 VARIABLE_DEF <6>
+        MODIFIERS[6x8] 5 MODIFIERS <6>
+        TYPE[6x8] 13 TYPE <6>
+          ObjectTrhee[6x8] 58 IDENT <6>
+        three[6x20] 58 IDENT <6>
+        =[6x26] 80 ASSIGN <6>
+          EXPR[6x28] 28 EXPR <6>
+            null[6x28] 135 LITERAL_NULL <6>
+      ;[6x32] 45 SEMI <6>
+
+
+        three.methodThree();
+      EXPR[7x25] 28 EXPR <7>
+        ([7x25] 27 METHOD_CALL <7>
+          .[7x13] 59 DOT <7>
+            three[7x8] 58 IDENT <7>
+            methodThree[7x14] 58 IDENT <7>
+          ELIST[7x26] 34 ELIST <7>
+          )[7x26] 77 RPAREN <7>
+      ;[7x27] 45 SEMI <7>
+
+        three.methodThreeEx(1, "abc");
+      EXPR[8x27] 28 EXPR <8>
+        ([8x27] 27 METHOD_CALL <8>
+          .[8x13] 59 DOT <8>
+            three[8x8] 58 IDENT <8>
+            methodThreeEx[8x14] 58 IDENT <8>
+          ELIST[8x28] 34 ELIST <8>
+            EXPR[8x28] 28 EXPR <8>
+              1[8x28] 137 NUM_INT <8>
+            ,[8x29] 74 COMMA <8>
+            EXPR[8x31] 28 EXPR <8>
+              "abc"[8x31] 139 STRING_LITERAL <8>
+          )[8x36] 77 RPAREN <8>
+      ;[8x37] 45 SEMI <8>
+
+        String ret = three.methodAndRet();
+      VARIABLE_DEF[9x8] 10 VARIABLE_DEF <9>
+        MODIFIERS[9x8] 5 MODIFIERS <9>
+        TYPE[9x8] 13 TYPE <9>
+          String[9x8] 58 IDENT <9>
+        ret[9x15] 58 IDENT <9>
+        =[9x19] 80 ASSIGN <9>
+          EXPR[9x39] 28 EXPR <9>
+            ([9x39] 27 METHOD_CALL <9>
+              .[9x26] 59 DOT <9>
+                three[9x21] 58 IDENT <9>
+                methodAndRet[9x27] 58 IDENT <9>
+              ELIST[9x40] 34 ELIST <9>
+              )[9x40] 77 RPAREN <9>
+      ;[9x41] 45 SEMI <9>

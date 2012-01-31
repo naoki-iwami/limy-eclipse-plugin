@@ -1,0 +1,29 @@
+
+#foreach ($file in $Util.gets($pmd, "file"))
+  #set ($violations = $Util.gets($file, "violation"))
+  #if (!$violations.isEmpty())
+
+	<h3>File $file.name</h3>
+	#set ($srcUrl = $Util.translate($Util.removeExt($$file.name), ".", "/"))
+	<table class="log" border="0" cellpadding="5" cellspacing="2" width="100%">
+		<tr>
+		  <th width="50">Priority</th>
+		  <th>Error Description</th>
+		  <th width="30">Line</th>
+	  </tr>
+	  
+	  #set ($mode = 0)
+	  #foreach ($violation in $violations)
+		<tr class=#if ($mode % 2 == 0) "a" #else "b" #end>
+	      <td>
+	        <div align="center" class="p${violation.priority}">${violation.priority}</div>
+	      </td>
+		  <td><a href="$violation.externalInfoUrl">$violation.anontext</a></td>
+		  <td><a href="javasrc/${srcUrl}.html#${violation.beginline}">$violation.beginline</a></td>
+		</tr>
+		#set ($mode = $mode + 1)
+	  #end
+	</table>
+	<br />
+  #end
+#end

@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <title>TODO Report</title>
+	<link title="Style" type="text/css" rel="stylesheet" href="css/sortabletable.css"/>
+    <style type="text/css">
+    .bannercell {
+      border: 0px;
+      padding: 0px;
+    }
+    body {
+      margin-left: 10;
+      margin-right: 10;
+      font:normal 80% arial,helvetica,sanserif;
+      background-color:#FFFFFF;
+      color:#000000;
+    }
+    .a td { 
+      background: #efefef;
+    }
+    .b td { 
+      background: #fff;
+    }
+    th, td {
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      font-weight:bold;
+      background: #ccc;
+      color: black;
+    }
+    table, th, td {
+      font-size:100%;
+      border: none
+    }
+    table.log tr td, tr th {
+      
+    }
+    h2 {
+      font-weight:bold;
+      font-size:140%;
+      margin-bottom: 5;
+    }
+    h3 {
+      font-size:100%;
+      font-weight:bold;
+      background: #525D76;
+      color: white;
+      text-decoration: none;
+      padding: 2px;
+      margin-right: 2px;
+      margin-left: 2px;
+      margin-bottom: 0;
+    }
+    table.summary tr th {
+      font-weight: bold; text-align:left; background:#a6caf0;
+    }
+    table.summary tr td {
+      background:#eeeee0; text-align:center;
+    }
+    .p1 {
+      background:#FF9999;
+    }
+    .p2 {
+      background:#FFCC66;
+    }
+    .p3 {
+      background:#FFFF99;
+    }
+    .p4 {
+      background:#99FF99;
+    }
+    .p5 {
+      background:#9999FF;
+    }
+    </style>
+  </head>  
+  <body>
+    <h1>
+    <a name="top">TODO Report</a>
+    </h1>
+    <hr size="2"/>
+    #parse("todos")
+    <hr size="2"/>
+
+  </body>
+</html>

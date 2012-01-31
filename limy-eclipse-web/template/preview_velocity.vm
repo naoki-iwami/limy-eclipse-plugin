@@ -1,0 +1,16 @@
+<html>
+<head>
+	<title>$title</title>
+</head>
+<body>
+
+## comment
+
+#if ($block || $ext)
+	<div>
+		block
+	</div>
+#end
+
+</body>
+</html>

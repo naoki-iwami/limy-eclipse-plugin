@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <title>Jdepend Analysis</title>
+	<link title="Style" type="text/css" rel="stylesheet" href="css/sortabletable.css"/>
+	<script type="text/javascript" src="js/sortabletable.js"></script>
+    <style type="text/css">
+      body {
+      font:normal 68% verdana,arial,helvetica;
+      color:#000000;
+      }
+      table tr td, tr th {
+        font-size: 68%;
+      }
+      table.details tr td.header{
+      font-weight: bold;
+      text-align:center;
+      background:#a6caf0;
+      }
+      table.details tr td{
+      background:#eeeee0;
+      }
+      
+      p {
+      line-height:1.5em;
+      margin-top:0.5em; margin-bottom:1.0em;
+      margin-left:2em;
+      margin-right:2em;
+      }
+      h1 {
+      margin: 0px 0px 5px; font: 165% verdana,arial,helvetica
+      }
+      h2 {
+      margin-top: 1em; margin-bottom: 0.5em; font: bold 125% verdana,arial,helvetica
+      }
+      h3 {
+      margin-bottom: 0.5em; font: bold 115% verdana,arial,helvetica
+      }
+      h4 {
+      margin-bottom: 0.5em; font: bold 100% verdana,arial,helvetica
+      }
+      h5 {
+      margin-bottom: 0.5em; font: bold 100% verdana,arial,helvetica
+      }
+      h6 {
+      margin-bottom: 0.5em; font: bold 100% verdana,arial,helvetica
+      }
+      .Error {
+      font-weight:bold; color:red;
+      }
+      .Failure {
+      font-weight:bold; color:purple;
+      }
+      .Properties {
+      text-align:right;
+      }
+      .info {
+      margin-right: 5%;
+      }
+    </style>
+  </head>  
+  <body>
+    <h1>
+    <a name="top">Jdepend Analysis</a>
+    </h1>
+    <p align="right">Designed for use with <a href="http://clarkware.com/software/JDepend.html">JDepend</a> and <a href="http://jakarta.apache.org">Ant</a>.</p>
+    <hr size="2"/>
+    #parse("packages")
+    <br>
+    #parse("cycles")
+    <br>
+    <h3>Distance Graph</h3>
+    <image src="jdepend_distance_report.png"><br>
+    <br>
+    
+    #foreach ($project in $Util.gets($root, "project"))
+    <h3>Depend Graph ($project.name)</h3>
+    <image src="jdepend_report_${project.name}.png"><br>
+    <br>
+    #end
+    <hr size="2"/>
+
+	<script type="text/javascript">
+	new SortableTable(document.getElementById("packages"),
+	    ["Number", "Number", "Number", "Number", "Number", "String"]).sort(0);
+	</script>
+
+  </body>
+</html>

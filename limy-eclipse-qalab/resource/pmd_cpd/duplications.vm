@@ -1,0 +1,35 @@
+#macro(translate $str $oldChar $newChar)
+	$Util.translate($str, $oldChar, $newChar)
+#end
+
+#macro(translate_ext $str $oldChar $newChar)
+	$Util.removeExt($Util.translate($str, $oldChar, $newChar))
+#end
+
+#macro(write $duplication $mode)
+	#set ($file1 = $duplication.files.get(0))
+	#set ($file2 = $duplication.files.get(1))
+	<table width="90%" border="10">
+	  <tr>
+	    <td><h3>Duplication $duplication.lines Lines, $duplication.tokens Tokens</h3></td>
+	    <td style="vertical-align: bottom">
+	    	<a href="javasrc/#translate_ext($file1.path "/" "/").html#$file1.line">$file1.path (L.${file1.line}-)</a>
+	    	 and
+	    	<a href="javasrc/#translate_ext($file2.path "/" "/").html#$file2.line">$file2.path (L.${file2.line}-)</a>
+	    </td>
+	  </tr>
+	</table>
+	<pre>$duplication.codefragment</pre>
+#end
+
+
+#set ($mode = 0)
+
+#if ($pmd-cpd.duplication)
+	#write($pmd-cpd.duplication $mode)
+#end
+
+#foreach ($duplication in $pmd-cpd.duplications)
+	#write($duplication $mode)
+	#set ($mode = $mode + 1)
+#end

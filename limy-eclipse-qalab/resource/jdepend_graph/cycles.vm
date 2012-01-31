@@ -1,0 +1,19 @@
+#if ($Util.gets($JDepend, "Cycles.Package").size() == 0)
+	"Cycles nothing" [
+		color="blue"
+	]
+#else
+	subgraph cluster_cycles {
+		label = "Cycles"
+		fontcolor = "red"
+		color="red"
+		
+		#foreach ($package in $Util.gets($JDepend, "Cycles.Package"))
+	
+			#foreach ($subPackage in $package.Packages)
+				#if ($package.Name != $subPackage) "$package.Name ... $subPackage" #end
+			#end
+	
+		#end
+	}
+#end

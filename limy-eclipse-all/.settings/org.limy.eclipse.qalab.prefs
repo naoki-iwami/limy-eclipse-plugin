@@ -1,0 +1,20 @@
+#Sat Aug 23 13:39:11 JST 2008
+antVersion=1
+buildProperties=build.properties
+buildXml=build.xml
+checkstyleConfig=limy-checks.xml
+checkstyleConfigType=1
+dotExe=D\:\\Program Files\\ATT\\Graphviz\\bin\\dot.exe
+eclipse.preferences.version=1
+enableJUnit=false
+enableJdepend=true
+enableUmlgraph=true
+excludeJdepends=com.*\njava.*\nnet.*\njunit.*\nedu.*\norg.jfree.*\norg.eclipse.*\norg.apache.*\njavax.*\norg.w3c.*\norg.xml.*
+graphHorizontal=true
+graphInferrel=true
+graphJavadoc=true
+ignorePackages=dummy\ncom\ncyvis\nnet\norg.limy.eclipse.qalab.umlgraph\norg.limy.eclipse.code.stub\norg.limy.eclipse.qalab.ant.pmd
+ignoreResources=src/com\nsrc/net\nsrc/dummy\nsrc/cyvis\nsrc/org/limy/eclipse/qalab/umlgraph
+pmdConfig=limy-pmd-ruleset.xml
+pmdConfigType=1
+subProjectNames=P/limy-eclipse-code\nP/limy-eclipse-core\nP/limy-eclipse-prop\nP/limy-eclipse-qalab\nP/limy-eclipse-web\n

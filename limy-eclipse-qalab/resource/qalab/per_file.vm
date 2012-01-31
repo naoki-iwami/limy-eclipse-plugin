@@ -1,0 +1,110 @@
+#macro(translate $str $oldChar $newChar)
+	$Util.translate($str, $oldChar, $newChar)
+#end
+
+#macro(translate_javasrc $str)
+	$Util.concat($Util.removeExt($Util.translate($str, "_", "/")), ".html")
+#end
+
+#macro(translate_coveragesrc $str)
+	$Util.concat($Util.removeExt($Util.translate($str, "_", ".")), ".html")
+#end
+
+<html>
+  <head>
+    <title>QALab for individual file</title>
+	<link rel="stylesheet" type="text/css" href="../css/qalab.css">
+  </head>  
+  <body>
+
+<div align="right"><a href="all-packages.html">[Index]</a></div>
+
+<a href="../javasrc/#translate_javasrc($id)">View code</a>
+#if ($cobertura)
+&nbsp;/&nbsp;&nbsp;<a href="../coverage/html/#translate_coveragesrc($id)">View coverage</a>
+#end
+
+<h3>#translate($id "_" "/")</h3>
+<br>
+
+<table width="100%">
+  <tr>
+    <td width="50%"><div align="center"><img src="${id}.png"></div></td>
+    <td width="50%">
+	#if ($cobertura)
+	<div align="center"><img src="coverage/${id}.png"></div>
+	#end
+    </td>
+  </tr>
+</table>
+
+<br><br>
+
+#set ($allResults = $Util.createMap())
+#set ($dates = $Util.sortDesc($Util.getGroupSet($results, "date")))
+
+#foreach ($date in $dates)
+  #set ($dummy = $allResults.put($date, $Util.createMap()))
+  #set ($summaries = $allResults.get($date))
+  #foreach ($row in $results)
+    #if ($row.date == $date)
+      #set ($dummy = $summaries.put($row.type, $row))
+    #end
+  #end
+#end
+
+#if ($result)
+  #set ($row = $result)
+  #set ($date = $row.date)
+  #set ($dummy = $allResults.put($date, $Util.createMap()))
+  #set ($summaries = $allResults.get($date))
+  #set ($dummy = $summaries.put($row.type, $row))
+  #set ($dates = [$date])
+#end
+
+<table class="log" border="0" cellpadding="5" cellspacing="2" width="100%">
+	<tr>
+      <th class="header">Date</th>
+      <th colspan="2" class="header">checkstyle</th>
+      <th colspan="1" class="header">findbugs</th>
+      <th colspan="1" class="header">pmd</th>
+      <th colspan="1" class="header">javancss</th>
+      <th colspan="1" class="header">TODO</th>
+      <th colspan="3" class="header">cobertura</th>
+    </tr>
+    <tr>
+      <th width="20%"><br /></th>
+      <th width="10%">Files</th><th width="10%">Errors</th>
+      <th width="10%">Errors</th>
+      <th width="10%">Errors</th>
+      <th width="10%">Violations</th>
+      <th width="10%">TODOs</th>
+      <th width="6%">Line</th>
+      <th width="6%">Branch</th>
+      <th width="8%">JUnit</th>
+	</tr>
+	
+	#set ($mode = 0)
+	#foreach ($date in $dates)
+	  <tr class=#if ($mode % 2 == 0) "a" #else "b" #end>
+	  <td>$date</td>
+	    #set ($summaries = $allResults.get($date))
+		<td class="r">$!summaries.get("checkstyle").filecount</td>
+		<td class="r">$!summaries.get("checkstyle").statvalue</td>
+		<td class="r">$!summaries.get("findbugs").statvalue</td>
+		<td class="r">$!summaries.get("pmd").statvalue</td>
+		<td class="r">$!summaries.get("javancss").statvalue</td>
+		<td class="r">$!summaries.get("todo").statvalue</td>
+		<td class="r">$!summaries.get("cobertura-line").statvalue</td>
+		<td class="r">$!summaries.get("cobertura-branch").statvalue</td>
+		<td class="r">$!summaries.get("junit").statvalue</td>
+	  </tr>
+	  #set ($mode = $mode + 1)
+	#end
+	
+</table>
+
+
+
+</body>
+</html>

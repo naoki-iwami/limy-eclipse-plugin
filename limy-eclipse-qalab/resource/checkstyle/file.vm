@@ -1,0 +1,27 @@
+#foreach ($file in $Util.gets($checkstyle, "file"))
+
+	#if ($file.error || $file.errors)
+	    <h3>File $Util.translateBackSlash($file.name)</h3>
+
+	    <table class="log" border="0" cellpadding="5" cellspacing="2" width="100%">
+	    	<tr>
+	    	  <th>Error Description</th>
+	    	  <th width="30">Line</th>
+	      </tr>
+		  #set ($mode = 0)
+		  
+		  #foreach ($error in $Util.gets($file, "error"))
+			<tr class=#if ($mode % 2 == 0) "a" #else "b" #end>
+			  <td><a href="$Tool.getUrl($error)">$error.message</a></td>
+			  <td><a href="javasrc/${Util.removeExt($Util.translateBackSlash($file.name))}.html#${error.line}">${error.line}</a></td>
+			</tr>
+		    #set ($mode = $mode + 1)
+		  #end
+	    </table>
+	    <br />
+	#end
+
+  <p/>
+  <p/>
+
+#end

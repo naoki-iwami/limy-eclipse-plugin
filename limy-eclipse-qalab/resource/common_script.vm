@@ -1,0 +1,20 @@
+<script>
+function get(id) {
+	return document.getElementById(id);
+}
+function collapseOrExpand(blockId) {
+	var obj = get(blockId + "Button");
+	if (get(blockId).style.display == "none") {
+		get(blockId).style.display = "block";
+		obj.src = "images/collapse.png";
+		obj.alt = "Collapse";
+		obj.title = "Collapse";
+	} else {
+		get(blockId).style.display = "none";
+		obj.src = "images/expand.png";
+		obj.alt = "Expand";
+		obj.title = "Expand";
+	}
+}
+
+</script>

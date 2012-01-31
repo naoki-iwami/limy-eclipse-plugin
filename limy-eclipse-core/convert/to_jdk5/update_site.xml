@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.limy.eclipse.feature_1.3.8.jar" id="org.limy.eclipse.feature" version="1.3.8">
+      <category name="Limy Eclipse Plugin (Eclipse3.2)"/>
+   </feature>
+   <category-def name="Limy Eclipse Plugin (Eclipse3.2)" label="Limy Eclipse Plugin (Eclipse3.2)"/>
+</site>

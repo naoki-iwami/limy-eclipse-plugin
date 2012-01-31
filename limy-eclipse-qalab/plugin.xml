@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <!-- Preference -->
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="QALab"
+            category="org.limy.eclipse.core.LimyPreferencePage"
+            class="org.limy.eclipse.qalab.LimyQalabPreferencePage"
+            id="org.limy.eclipse.qalab.LimyQalabPreferencePage">
+      </page>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.limy.eclipse.qalab.propertypage.LimyQalabPropertyPage"
+            id="org.limy.eclipse.qalab.propertypage.LimyQalabPropertyPage"
+            name="QALab">
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.jdt.core.IJavaProject">
+            </instanceof>
+         </enabledWhen>
+      </page>
+   </extension>
+
+   <extension
+         id="LimyQalabNature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run class="org.limy.eclipse.qalab.LimyQalabNature" />
+      </runtime>
+   </extension>
+   
+   <extension
+         id="LimyQalabBuilder"
+         name="Limy QALab Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder>
+         <run class="org.limy.eclipse.qalab.builder.LimyQalabBuilder" />
+      </builder>
+   </extension>
+
+   <extension
+         id="LimyQalabMarker"
+         name="Limy Qalab Problem"
+         point="org.eclipse.core.resources.markers">
+      <persistent value="true" />
+   </extension>
+
+   <extension
+         id="LimyQalabProblemMarker"
+         name="Limy Qalab Problem"
+         point="org.eclipse.core.resources.markers">
+         
+      <super type="org.eclipse.core.resources.problemmarker" />
+      <super type="org.limy.eclipse.qalab.LimyQalabMarker" />
+      <persistent value="true" />
+      <attribute name="url" />
+   </extension>
+
+   <extension
+         id="LimyQalabCoverageMarker"
+         name="Limy Qalab Coverage"
+         point="org.eclipse.core.resources.markers">
+         
+      <super type="org.eclipse.core.resources.textmarker" />
+      <super type="org.limy.eclipse.qalab.LimyQalabCoverageResult" />
+      <persistent value="true" />
+   </extension>
+
+   <extension
+         id="LimyQalabNoCoverageMarker"
+         name="Limy Qalab Non Coverage"
+         point="org.eclipse.core.resources.markers">
+         
+      <super type="org.eclipse.core.resources.textmarker" />
+      <super type="org.limy.eclipse.qalab.LimyQalabCoverageResult" />
+      <persistent value="true" />
+   </extension>
+
+   <extension
+         id="LimyQalabTestMarker"
+         name="Limy Qalab Test Marker"
+         point="org.eclipse.core.resources.markers">
+
+      <super type="org.eclipse.core.resources.textmarker" />
+      <super type="org.limy.eclipse.qalab.LimyQalabMarker" />
+   </extension>
+
+   <extension
+         id="LimyQalabSuccessMarker"
+         name="Limy Qalab Test Success"
+         point="org.eclipse.core.resources.markers">
+         
+      <super type="org.eclipse.core.resources.textmarker" />
+      <super type="org.limy.eclipse.qalab.LimyQalabTestMarker" />
+      <persistent value="true" />
+      <attribute name="testName" />
+   </extension>
+
+   <extension
+         id="LimyQalabFailureMarker"
+         name="Limy Qalab Failure Problem"
+         point="org.eclipse.core.resources.markers">
+
+      <super type="org.eclipse.core.resources.problemmarker" />
+      <super type="org.limy.eclipse.qalab.LimyQalabTestMarker" />
+      <persistent value="true" />
+      <attribute name="testName" />
+   </extension>
+
+   <extension
+         id="LimyQalabErrorMarker"
+         name="Limy Qalab Error Problem"
+         point="org.eclipse.core.resources.markers">
+
+      <super type="org.eclipse.core.resources.problemmarker" />
+      <super type="org.limy.eclipse.qalab.LimyQalabTestMarker" />
+      <persistent value="true" />
+   </extension>
+
+   <extension
+         id="LimyQalabCoverageResult"
+         name="Limy Qalab Coverage Result (not visible)"
+         point="org.eclipse.core.resources.markers">
+
+      <super type="org.limy.eclipse.qalab.LimyQalabMarker" />
+      <persistent value="true" />
+      <attribute name="allLineNumber" />
+      <attribute name="coverageLineNumber" />
+      <attribute name="allBranchNumber" />
+      <attribute name="coverageBranchNumber" />
+      <attribute name="complexity" />
+   </extension>
+   
+   <extension
+		 point="org.eclipse.ui.editors.markerAnnotationSpecification">
+	  <specification
+			annotationType="org.limy.eclipse.qalab.coverageMarkerAnnotation"
+	        colorPreferenceKey="coverage_color"
+	        colorPreferenceValue="192,255,192"
+	        contributesToHeader="false"
+	        highlightPreferenceKey="coverage_highlight"
+	        highlightPreferenceValue="true"
+	        icon="icons/blank.gif"
+	        includeOnPreferencePage="true"
+	        label="Coverage"
+	        overviewRulerPreferenceKey="coverage_overviewRuler"
+	        overviewRulerPreferenceValue="false"
+	        presentationLayer="0"
+	        textPreferenceKey="coverage_text"
+	        textPreferenceValue="true"
+	        textStylePreferenceKey="coverage_stylePreferences"
+	        textStylePreferenceValue="BOX"
+            verticalRulerPreferenceKey="coverage_verticalRuler"
+            verticalRulerPreferenceValue="false">
+	  </specification>
+   </extension>
+   <extension
+		 point="org.eclipse.ui.editors.annotationTypes">
+	  <type
+			markerType="org.limy.eclipse.qalab.LimyQalabCoverageMarker"
+			name="org.limy.eclipse.qalab.coverageMarkerAnnotation">
+	  </type>
+   </extension>
+
+   <extension
+		 point="org.eclipse.ui.editors.markerAnnotationSpecification">
+	  <specification
+			annotationType="org.limy.eclipse.qalab.noCoverageMarkerAnnotation"
+	        colorPreferenceKey="nocoverage_color"
+	        colorPreferenceValue="255,160,160"
+	        contributesToHeader="false"
+	        highlightPreferenceKey="nocoverage_highlight"
+	        highlightPreferenceValue="true"
+	        icon="icons/blank.gif"
+	        includeOnPreferencePage="true"
+	        label="No Coverage"
+	        overviewRulerPreferenceKey="nocoverage_overviewRuler"
+	        overviewRulerPreferenceValue="false"
+	        presentationLayer="0"
+	        textPreferenceKey="nocoverage_text"
+	        textPreferenceValue="true"
+	        textStylePreferenceKey="nocoverage_stylePreferences"
+	        textStylePreferenceValue="BOX"
+            verticalRulerPreferenceKey="nocoverage_verticalRuler"
+            verticalRulerPreferenceValue="false">
+	  </specification>
+   </extension>
+   <extension
+		 point="org.eclipse.ui.editors.annotationTypes">
+	  <type
+			markerType="org.limy.eclipse.qalab.LimyQalabNoCoverageMarker"
+			name="org.limy.eclipse.qalab.noCoverageMarkerAnnotation">
+	  </type>
+   </extension>
+
+   <extension
+		 point="org.eclipse.ui.editors.markerAnnotationSpecification">
+	  <specification
+			icon="icons/failure.png"
+			annotationType="org.limy.eclipse.qalab.failureMarkerAnnotation">
+	  </specification>
+   </extension>
+   <extension
+		 point="org.eclipse.ui.editors.annotationTypes">
+	  <type
+			markerType="org.limy.eclipse.qalab.LimyQalabFailureMarker"
+			super="org.eclipse.ui.workbench.texteditor.warning"
+			name="org.limy.eclipse.qalab.failureMarkerAnnotation">
+	  </type>
+   </extension>
+
+   <extension
+		 point="org.eclipse.ui.editors.markerAnnotationSpecification">
+	  <specification
+			icon="icons/success_ovr.gif"
+			annotationType="org.limy.eclipse.qalab.successMarkerAnnotation">
+	  </specification>
+   </extension>
+   <extension
+		 point="org.eclipse.ui.editors.annotationTypes">
+	  <type
+			markerType="org.limy.eclipse.qalab.LimyQalabSuccessMarker"
+			super="org.eclipse.ui.workbench.texteditor.info"
+			name="org.limy.eclipse.qalab.successMarkerAnnotation">
+	  </type>
+   </extension>
+
+   <extension
+		 point="org.eclipse.ui.editors.markerAnnotationSpecification">
+	  <specification
+			icon="icons/error.png"
+			annotationType="org.limy.eclipse.qalab.errorMarkerAnnotation">
+	  </specification>
+   </extension>
+   <extension
+		 point="org.eclipse.ui.editors.annotationTypes">
+	  <type
+			markerType="org.limy.eclipse.qalab.LimyQalabErrorMarker"
+			super="org.eclipse.ui.workbench.texteditor.warning"
+			name="org.limy.eclipse.qalab.errorMarkerAnnotation">
+	  </type>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="org.limy.eclipse.qalab.mark.LimyMarkerResolutionGenerator">
+      </markerResolutionGenerator>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.limy.eclipse.qalab.contribution"
+            objectClass="org.eclipse.jdt.core.IJavaElement">
+         <menu
+               id="org.limy.eclipse.qalab.menu"
+               label="Limy QALab"
+               path="additions">
+             <separator name="report" />
+             <separator name="coberage" />
+         </menu>
+
+         <action
+               class="org.limy.eclipse.qalab.action.MakeMarkerAction"
+               id="org.limy.eclipse.qalab.action.MakeMarkerAction"
+               label="マーカー作成"
+               menubarPath="org.limy.eclipse.qalab.menu/coberage"
+               definitionId="org.limy.eclipse.qalab.action.MakeMarkerAction"
+               style="push">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.ResetMarkerAction"
+               id="org.limy.eclipse.qalab.action.ResetMarkerAction"
+               label="マーカー削除"
+               menubarPath="org.limy.eclipse.qalab.menu/coberage"
+               definitionId="org.limy.eclipse.qalab.action.ResetMarkerAction"
+               style="push">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.CalculateCoverageAction"
+               id="org.limy.eclipse.qalab.action.CalculateCoverageAction"
+               label="カバレッジ計測"
+               menubarPath="org.limy.eclipse.qalab.menu/coberage"
+               definitionId="org.limy.eclipse.qalab.action.CalculateCoverageAction"
+               style="push">
+         </action>
+<!--
+         <action
+               class="org.limy.eclipse.qalab.action.CreateReportAction"
+               id="org.limy.eclipse.qalab.action.CreateReportAction"
+               definitionId="org.limy.eclipse.qalab.action.CreateReportAction"
+               label="レポート作成"
+               menubarPath="org.limy.eclipse.qalab.menu/report"
+               style="push">
+         </action>
+-->
+         <action
+               class="org.limy.eclipse.qalab.action.CreateReportProcessAction"
+               id="org.limy.eclipse.qalab.action.CreateReportProcessAction"
+               definitionId="org.limy.eclipse.qalab.action.CreateReportProcessAction"
+               label="レポート作成(別プロセス)"
+               menubarPath="org.limy.eclipse.qalab.menu/report"
+               style="push">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.ViewReportAction"
+               id="org.limy.eclipse.qalab.action.ViewReportAction"
+               definitionId="org.limy.eclipse.qalab.action.ViewReportAction"
+               label="レポートを見る"
+               menubarPath="org.limy.eclipse.qalab.menu/report"
+               style="push">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.CreateBuildXmlAction"
+               id="org.limy.eclipse.qalab.action.CreateBuildXmlAction"
+               definitionId="org.limy.eclipse.qalab.action.CreateBuildXmlAction"
+               label="build.xml作成"
+               menubarPath="org.limy.eclipse.qalab.menu/report"
+               style="push">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.ViewGraphAction"
+               id="org.limy.eclipse.qalab.action.ViewGraphAction"
+               definitionId="org.limy.eclipse.qalab.action.ViewGraphAction"
+               label="選択したクラスをUML図にして表示"
+               menubarPath="org.limy.eclipse.qalab.menu/graph"
+               style="push">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.ViewJdependAction"
+               id="org.limy.eclipse.qalab.action.ViewJdependAction"
+               definitionId="org.limy.eclipse.qalab.action.ViewJdependAction"
+               label="選択したパッケージ以下の関連図を表示"
+               menubarPath="org.limy.eclipse.qalab.menu/graph"
+               style="push">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.ViewCcGraphAction"
+               id="org.limy.eclipse.qalab.action.ViewCcGraphAction"
+               definitionId="org.limy.eclipse.qalab.action.ViewCcGraphAction"
+               label="メソッドのCyclomatic Complexityを表示"
+               menubarPath="org.limy.eclipse.qalab.menu/graph"
+               style="push">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.KeyBindAction"
+               id="org.limy.eclipse.qalab.action.KeyBindAction"
+               definitionId="org.limy.eclipse.qalab.action.KeyBindAction"
+               label="Keybind"
+               menubarPath="org.limy.eclipse.qalab.menu/key"
+               style="push">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.OpenTestClassAction"
+               id="org.limy.eclipse.qalab.action.OpenTestClassAction"
+               definitionId="org.limy.eclipse.qalab.action.OpenTestClassAction"
+               label="対応するテストクラスを開く"
+               menubarPath="org.limy.eclipse.qalab.menu/code"
+               style="push">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.ShowSequenceAction"
+               id="org.limy.eclipse.qalab.action.ShowSequenceAction"
+               definitionId="org.limy.eclipse.qalab.action.ShowSequenceAction"
+               label="シーケンス図を表示"
+               menubarPath="org.limy.eclipse.qalab.menu/graph"
+               style="push">
+         </action>
+
+      </objectContribution>
+   </extension>
+   
+   <extension point="org.eclipse.ui.commands">
+     <command
+            name="Make Marker"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.MakeMarkerAction"
+            description="選択したファイルをチェックしてマーカーを作成">
+     </command>
+     <command
+            name="Reset Marker"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.ResetMarkerAction"
+            description="選択したファイルのマーカーを削除">
+     </command>
+     <command
+            name="Calculate Coverage"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.CalculateCoverageAction"
+            description="選択したファイルのカバレッジ計測">
+     </command>
+<!--
+     <command
+            name="Create report"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.CreateReportAction"
+            description="レポートを作成（Ant経由）">
+     </command>
+-->
+     <command
+            name="Create report by other process"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.CreateReportProcessAction"
+            description="レポートを作成（別プロセス）">
+     </command>
+     <command
+            name="Show Report"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.ViewReportAction"
+            description="作成したレポートをブラウザで開く">
+     </command>
+     <command
+            name="Create build.xml for Report"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.CreateBuildXmlAction"
+            description="レポート出力用のbuild.xmlを作成">
+     </command>
+     <command
+            name="Show Class Graph"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.ViewGraphAction"
+            description="クラスUML図をポップアップ表示">
+     </command>
+     <command
+            name="Show Package Graph"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.ViewJdependAction"
+            description="パッケージ関連図をポップアップ表示">
+     </command>
+     <command
+            name="Show Cc graph"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.ViewCcGraphAction"
+            description="Cyclomatic Complexityのグラフ表示">
+     </command>
+     <command
+            name="Setting keybind"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.KeyBindAction"
+            description="キーバインド設定変更">
+     </command>
+     <command
+            name="Calc Checkstyle"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.toolbar.CalcCheckstyleAction"
+            description="Checkstyle計測">
+     </command>
+     <command
+            name="Calc PMD"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.toolbar.CalcPmdAction"
+            description="PMD計測">
+     </command>
+     <command
+            name="Calc PMD"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.toolbar.CalcPmdCpdAction"
+            description="PMD CPD計測">
+     </command>
+     <command
+            name="Calc Findbugs"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.toolbar.CalcFindbugsAction"
+            description="Findbugs計測">
+     </command>
+     <command
+            name="Calc Javancss"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.toolbar.CalcJavancssAction"
+            description="Javancss計測">
+     </command>
+     <command
+            name="Make UMLGraph"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.toolbar.CalcUmlgraphAction"
+            description="UMLGraph出力">
+     </command>
+     <command
+            name="Make Javadoc"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.toolbar.MakeJavadocAction"
+            description="Javadoc出力">
+     </command>
+     <command
+            name="Calc QALab"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.toolbar.CalcQalabAction"
+            description="QALab集計">
+     </command>
+     <command
+            name="Calc Cobertura"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.toolbar.CalcCoberturaAction"
+            description="Cobertura計測">
+     </command>
+     <command
+            name="Calc TODO"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.toolbar.CalcTodoAction"
+            description="TODO計測">
+     </command>
+     <command
+            name="Calc JDepend"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.toolbar.CalcJDependAction"
+            description="JDepend計測">
+     </command>
+     <command
+            name="Make Java HTML"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.toolbar.Java2HtmlAction"
+            description="JavaソースHTML出力">
+     </command>
+     <command
+            name="Open Test Class"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.OpenTestClassAction"
+            description="対応するテストクラスをOpen">
+     </command>
+     <command
+            name="Show Sequqnce"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.qalab.action.ShowSequenceAction"
+            description="シーケンス図を表示">
+     </command>
+   </extension>
+
+   <extension point="org.eclipse.ui.bindings">
+      <key
+            sequence="Ctrl+C Ctrl+X P"
+            commandId="org.limy.eclipse.qalab.action.MakeMarkerAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X R"
+            commandId="org.limy.eclipse.qalab.action.ResetMarkerAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X Ctrl+V"
+            commandId="org.limy.eclipse.qalab.action.CalculateCoverageAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X B"
+            commandId="org.limy.eclipse.qalab.action.CreateBuildXmlAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+<!--
+      <key
+            sequence="Ctrl+C Ctrl+X C"
+            commandId="org.limy.eclipse.qalab.action.CreateReportAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+-->
+      <key
+            sequence="Ctrl+C Ctrl+X C"
+            commandId="org.limy.eclipse.qalab.action.CreateReportProcessAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X V"
+            commandId="org.limy.eclipse.qalab.action.ViewReportAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X G"
+            commandId="org.limy.eclipse.qalab.action.ViewGraphAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X J"
+            commandId="org.limy.eclipse.qalab.action.ViewJdependAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X M"
+            commandId="org.limy.eclipse.qalab.action.ViewCcGraphAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X K"
+            commandId="org.limy.eclipse.qalab.action.KeyBindAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+V C"
+            commandId="org.limy.eclipse.qalab.action.toolbar.CalcCheckstyleAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+V P"
+            commandId="org.limy.eclipse.qalab.action.toolbar.CalcPmdAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+V D"
+            commandId="org.limy.eclipse.qalab.action.toolbar.CalcPmdCpdAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+V F"
+            commandId="org.limy.eclipse.qalab.action.toolbar.CalcFindbugsAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+V N"
+            commandId="org.limy.eclipse.qalab.action.toolbar.CalcJavancssAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+V O"
+            commandId="org.limy.eclipse.qalab.action.toolbar.MakeJavadocAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+V V"
+            commandId="org.limy.eclipse.qalab.action.toolbar.CalcCoberturaAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+V T"
+            commandId="org.limy.eclipse.qalab.action.toolbar.CalcTodoAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+V U"
+            commandId="org.limy.eclipse.qalab.action.toolbar.CalcUmlgraphAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+V J"
+            commandId="org.limy.eclipse.qalab.action.toolbar.CalcJDependAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+V H"
+            commandId="org.limy.eclipse.qalab.action.toolbar.Java2HtmlAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+V Q"
+            commandId="org.limy.eclipse.qalab.action.toolbar.CalcQalabAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X Ctrl+T"
+            commandId="org.limy.eclipse.qalab.action.OpenTestClassAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X S"
+            commandId="org.limy.eclipse.qalab.action.ShowSequenceAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+
+   </extension>
+
+<!--   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.limy.eclipse.qalab.editor.QalabJavaEditor"
+            contributorClass="org.limy.eclipse.qalab.editor.QalabEditorContributor"
+            default="false"
+            extensions="java"
+            icon="icons/java_obj.gif"
+            id="org.limy.eclipse.qalab.editor.QalabJavaEditor"
+            name="QALab Java Editor">
+      </editor>
+   </extension>
+-->
+
+<!--
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            id="org.limy.eclipse.qalab.editor.contribution"
+            targetID="org.limy.eclipse.qalab.editor.QalabJavaEditor">
+         <action
+               actionID="RulerClick"
+               class="org.eclipse.jdt.internal.ui.javaeditor.JavaSelectRulerAction"
+               id="org.limy.eclipse.qalab.editor.rulerClick"
+               label="Ruler Click"
+               style="push">
+         </action>
+         <action
+               actionID="RulerDoubleClick"
+               class="org.limy.eclipse.qalab.editor.DoubleClickRulerAction"
+               id="org.limy.eclipse.qalab.editor.rulerDoubleClick"
+               label="Ruler Double Click"
+               style="push">
+         </action>
+      </editorContribution>
+   </extension>
+-->
+
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.limy.eclipse.qalab.calc"
+            label="Limy Eclipse QALab Calc"
+            visible="false">
+
+         <action
+               class="org.limy.eclipse.qalab.action.toolbar.CalcTodoAction"
+               icon="icons/todo.png"
+               id="org.limy.eclipse.qalab.action.toolbar.CalcTodoAction"
+               definitionId="org.limy.eclipse.qalab.action.toolbar.CalcTodoAction"
+               label="TODO計測"
+               toolbarPath="addition">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.toolbar.Java2HtmlAction"
+               icon="icons/java2html.png"
+               id="org.limy.eclipse.qalab.action.toolbar.Java2HtmlAction"
+               definitionId="org.limy.eclipse.qalab.action.toolbar.Java2HtmlAction"
+               label="JavaソースHTML出力"
+               toolbarPath="addition">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.toolbar.MakeJavadocAction"
+               id="org.limy.eclipse.qalab.action.toolbar.MakeJavadocAction"
+               definitionId="org.limy.eclipse.qalab.action.toolbar.MakeJavadocAction"
+               label="Javadoc出力"
+               toolbarPath="addition">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.toolbar.CalcUmlgraphAction"
+               icon="icons/umlgraph.png"
+               id="org.limy.eclipse.qalab.action.toolbar.CalcUmlgraphAction"
+               definitionId="org.limy.eclipse.qalab.action.toolbar.CalcUmlgraphAction"
+               label="UMLGraph出力"
+               toolbarPath="addition">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.toolbar.CalcJDependAction"
+               icon="icons/jdepend.png"
+               id="org.limy.eclipse.qalab.action.toolbar.CalcJDependAction"
+               definitionId="org.limy.eclipse.qalab.action.toolbar.CalcJDependAction"
+               label="JDepend計測"
+               toolbarPath="addition">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.toolbar.CalcJavancssAction"
+               icon="icons/javancss.png"
+               id="org.limy.eclipse.qalab.action.toolbar.CalcJavancssAction"
+               definitionId="org.limy.eclipse.qalab.action.toolbar.CalcJavancssAction"
+               label="Javancss計測"
+               toolbarPath="addition">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.toolbar.CalcCoberturaAction"
+               icon="icons/cobertura.png"
+               id="org.limy.eclipse.qalab.action.toolbar.CalcCoberturaAction"
+               definitionId="org.limy.eclipse.qalab.action.toolbar.CalcCoberturaAction"
+               label="Cobertura計測"
+               toolbarPath="addition">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.toolbar.CalcFindbugsAction"
+               icon="icons/findbugs.png"
+               id="org.limy.eclipse.qalab.action.toolbar.CalcFindbugsAction"
+               definitionId="org.limy.eclipse.qalab.action.toolbar.CalcFindbugsAction"
+               label="Findbugs計測"
+               toolbarPath="addition">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.toolbar.CalcPmdCpdAction"
+               icon="icons/pmd-cpd.png"
+               id="org.limy.eclipse.qalab.action.toolbar.CalcPmdCpdAction"
+               definitionId="org.limy.eclipse.qalab.action.toolbar.CalcPmdCpdAction"
+               label="PMD CPD計測"
+               toolbarPath="addition">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.toolbar.CalcPmdAction"
+               icon="icons/pmd.png"
+               id="org.limy.eclipse.qalab.action.toolbar.CalcPmdAction"
+               definitionId="org.limy.eclipse.qalab.action.toolbar.CalcPmdAction"
+               label="PMD計測"
+               toolbarPath="addition">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.toolbar.CalcCheckstyleAction"
+               icon="icons/checkstyle.png"
+               id="org.limy.eclipse.qalab.action.toolbar.CalcCheckstyleAction"
+               definitionId="org.limy.eclipse.qalab.action.toolbar.CalcCheckstyleAction"
+               label="Checkstyle計測"
+               toolbarPath="addition">
+         </action>
+      </actionSet>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.limy.eclipse.qalab.actionSet"
+            label="Limy Eclipse QALab"
+            visible="true">
+         <action
+               class="org.limy.eclipse.qalab.action.toolbar.CalcQalabAction"
+               icon="icons/qalab.png"
+               id="org.limy.eclipse.qalab.action.toolbar.CalcQalabAction"
+               definitionId="org.limy.eclipse.qalab.action.toolbar.CalcQalabAction"
+               label="QALab集計"
+               toolbarPath="addition">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.ViewReportAction"
+               icon="icons/report.png"
+               id="org.limy.eclipse.qalab.action.ViewReportAction"
+               definitionId="org.limy.eclipse.qalab.action.ViewReportAction"
+               label="レポートを見る"
+               toolbarPath="addition">
+         </action>
+         <action
+               class="org.limy.eclipse.qalab.action.toolbar.PulldownAction"
+               icon="icons/calc.png"
+               id="org.limy.eclipse.qalab.action.toolbar.PulldownAction"
+               label="各種計測"
+               style="pulldown"
+               toolbarPath="addition">
+         </action>
+
+         <action
+               menubarPath="org.limy.eclipse.menu/additions"
+               class="org.limy.eclipse.qalab.action.ShowSequenceAction"
+               label="シーケンス図表示"
+               id="org.limy.eclipse.qalab.action.ShowSequenceAction"
+               definitionId="org.limy.eclipse.qalab.action.ShowSequenceAction"
+         />
+
+      </actionSet>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="org.limy.eclipse.view"
+            name="Limy">
+      </category>
+
+      <view
+            allowMultiple="false"
+            category="org.limy.eclipse.view"
+            class="org.limy.eclipse.qalab.graphview.QalabGraphView"
+            fastViewWidthRatio="90"
+            icon="icons/camera_pit_green.gif"
+            id="org.limy.eclipse.qalab.graphview.QalabGraphView"
+            name="QALab Graph">
+      </view>
+
+      <view
+            allowMultiple="false"
+            category="org.limy.eclipse.view"
+            class="org.limy.eclipse.qalab.qaview.QalabView"
+            id="org.limy.eclipse.qalab.qaview.QalabView"
+            name="QALab">
+      </view>
+
+      <view
+            allowMultiple="false"
+            category="org.limy.eclipse.view"
+            class="org.limy.eclipse.qalab.qaview.QalabAllView"
+            id="org.limy.eclipse.qalab.qaview.QalabAllView"
+            name="QALab">
+      </view>
+
+      <view
+            category="org.limy.eclipse.view"
+            class="org.limy.eclipse.qalab.ui.TestResultView"
+            id="org.limy.eclipse.qalab.ui.TestResultView"
+            name="Test Result">
+      </view>
+
+   </extension>
+   
+   <!--
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="org.limy.eclipse.qalab.ui.QalabPerspectiveFactory"
+            icon="icons/qapers2.png"
+            id="org.limy.eclipse.qalab.ui.QalabPerspectiveFactory"
+            name="QALab">
+      </perspective>
+   </extension>
+   -->
+
+</plugin>

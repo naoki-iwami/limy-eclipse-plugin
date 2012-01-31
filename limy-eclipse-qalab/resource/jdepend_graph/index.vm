@@ -1,0 +1,19 @@
+
+digraph g {
+	graph [
+	#if (!$horizontal)
+		rankdir=LR;
+		ranksep=1;
+	#end
+	];
+	node [
+	    fontsize = "9"
+	    fontname = "Courier"
+	    shape = "ellipse"
+	];
+	edge[];
+	
+	
+	#parse("packages")
+	#parse("cycles")
+}

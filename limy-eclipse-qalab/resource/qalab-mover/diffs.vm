@@ -1,0 +1,96 @@
+#macro(translate $str $oldChar $newChar)
+	$Util.translate($str, $oldChar, $newChar)
+#end
+
+#macro(totalCounts $obj)
+	#set ($totalFile = 0)
+	#set ($totalViolation = 0)
+	#foreach ($file in $obj.files)
+		#if ($file.diff)
+			#set ($totalFile = $totalFile + 1)
+			#set ($totalViolation = $totalViolation + $Util.toInt($file.diff.diff))
+		#end
+		#if ($file.diffs)
+			#set ($totalFile = $totalFile + 1)
+			#foreach ($diff in $file.diffs)
+				#set ($totalViolation = $totalViolation + $Util.toInt($diff.diff))
+			#end
+		#end
+	#end
+#end
+
+#macro(write $file $diff $mode)
+	<tr class=#if ($mode % 2 == 0) "a" #else "b" #end>
+		#if ($enable_indivisual)
+			<td><a href="qalab/${Util.removeExt($file.name)}.html">#translate($file.name "_" "/")</a></td>
+		#else
+			<td>#translate($file.name "_" "/")</td>
+		#end
+		<td>$diff.type</td>
+		<td>$diff.previousrun</td>
+		<td>$diff.previouserrors</td>
+		<td>$diff.currentrun</td>
+		<td>$diff.currenterrors</td>
+		<td>$diff.diff</td>
+	</tr>
+#end
+
+#totalCounts($moversreport.up)
+<h3>Up by $totalFile file(s), Up by $totalViolation Violations</h3></th>
+
+<table class="log" border="0" cellpadding="5" cellspacing="2" width="100%">
+<tr>
+	<th width="45%">File</th>
+	<th width="10%">Type</th>
+	<th width="15%">Previous Time</th>
+	<th width="5%">Previous</th>
+	<th width="15%">Current Time</th>
+	<th width="5%">Current</th>
+	<th width="5%">Diff</th>
+</tr>
+
+#set ($mode = 0)
+#foreach ($file in $moversreport.up.files)
+	#if ($file.diff)
+		#write($file $file.diff $mode)
+		#set ($mode = $mode + 1)
+	#end
+	#if ($file.diffs)
+		#foreach ($diff in $file.diffs)
+			#write($file $diff $mode)
+			#set ($mode = $mode + 1)
+		#end
+	#end
+#end
+
+</table>
+
+#totalCounts($moversreport.down)
+<h3>Down by $totalFile file(s), Down by $totalViolation Violations</h3></th>
+
+<table class="log" border="0" cellpadding="5" cellspacing="2" width="100%">
+<tr>
+	<th width="45%">File</th>
+	<th width="10%">Type</th>
+	<th width="15%">Previous Time</th>
+	<th width="5%">Previous</th>
+	<th width="15%">Current Time</th>
+	<th width="5%">Current</th>
+	<th width="5%">Diff</th>
+</tr>
+
+#set ($mode = 0)
+#foreach ($file in $moversreport.down.files)
+	#if ($file.diff)
+		#write($file $file.diff $mode)
+		#set ($mode = $mode + 1)
+	#end
+	#if ($file.diffs)
+		#foreach ($diff in $file.diffs)
+			#write($file $diff $mode)
+			#set ($mode = $mode + 1)
+		#end
+	#end
+#end
+
+</table>

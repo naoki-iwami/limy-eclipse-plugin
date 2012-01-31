@@ -1,0 +1,8 @@
+
+  <typeAlias alias="$aliasName" type="$fullQualifiedName"/>
+
+  <resultMap id="${aliasName}Result" class="$aliasName">
+#foreach ($column in $columns)
+    <result property="$column.name" column="$column.dbName"/>
+#end
+  </resultMap>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <!-- エディタ -->
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            icon="icons/prop_obj.png"
+            class="org.limy.eclipse.prop.editor.PropertyEditor"
+            default="true"
+            name="Limy Property Editor"
+            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+            id="org.limy.eclipse.prop.editor.PropertyEditor"
+            extensions="properties">
+      </editor>
+   </extension>
+
+   <!-- Preference -->
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <!-- Property -->
+      <page
+            name="Property"
+            category="org.limy.eclipse.core.LimyPreferencePage"
+            class="org.limy.eclipse.prop.preference.LimyPropPreferencePage"
+            id="org.limy.eclipse.prop.preference.LimyPropPreferencePage">
+      </page>
+   </extension>
+
+</plugin>

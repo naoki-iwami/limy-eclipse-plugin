@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="Code"
+            category="org.limy.eclipse.core.LimyPreferencePage"
+            class="org.limy.eclipse.code.preference.LimyCodePreferencePage"
+            id="org.limy.eclipse.code.preference.LimyCodePreferencePage">
+      </page>
+   </extension>
+
+   <!-- Property Page -->
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            objectClass="org.eclipse.jdt.core.IJavaProject"
+            class="org.limy.eclipse.code.LimyCodePropertyPage"
+            name="Limy"
+            id="org.limy.eclipse.code.LimyCodePropertyPage"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.limy.eclipse.code.actionSet"
+            label="Limy Eclipse Code Action Set"
+            visible="true">
+
+         <menu
+               label="&amp;Limy"
+               id="org.limy.eclipse.menu"/>
+
+         <action
+               menubarPath="org.limy.eclipse.menu/additions"
+               class="org.limy.eclipse.code.header.AddJavaHeaderAction"
+               label="%AddJavaHeaderAction.label"
+               id="org.limy.eclipse.code.header.AddJavaHeaderAction"
+               definitionId="org.limy.eclipse.code.header.AddJavaHeaderAction"
+         />
+         <action
+               menubarPath="org.limy.eclipse.menu/additions"
+               class="org.limy.eclipse.code.header.AddResourceHeaderAction"
+               label="%AddResourceHeaderAction.label"
+               id="org.limy.eclipse.code.header.AddResourceHeaderAction"
+               definitionId="org.limy.eclipse.code.header.AddResourceHeaderAction"
+         />
+         <action
+               menubarPath="org.limy.eclipse.menu/additions"
+               class="org.limy.eclipse.code.header.ConvertJavaCharsetAction"
+               label="%ConvertJavaCharsetAction.label"
+               id="org.limy.eclipse.code.header.ConvertJavaCharsetAction"
+               definitionId="org.limy.eclipse.code.header.ConvertJavaCharsetAction"
+         />
+
+         <action
+               menubarPath="org.limy.eclipse.menu/additions"
+               class="org.limy.eclipse.code.accessor.CreateAllPublicAction"
+               label="%CreateAllPublicAction.label"
+               id="org.limy.eclipse.code.accessor.CreateAllPublicAction"
+               definitionId="org.limy.eclipse.code.accessor.CreateAllPublicAction"
+         />
+         <action
+               menubarPath="org.limy.eclipse.menu/additions"
+               class="org.limy.eclipse.code.accessor.CreateAccessorAction"
+               label="%CreateAccessorAction.label"
+               id="org.limy.eclipse.code.accessor.CreateAccessorAction"
+               definitionId="org.limy.eclipse.code.accessor.CreateAccessorAction"
+         />
+         <action
+               menubarPath="org.limy.eclipse.menu/additions"
+               class="org.limy.eclipse.code.accessor.CreateSetterAction"
+               label="%CreateSetterAction.label"
+               id="org.limy.eclipse.code.accessor.CreateSetterAction"
+               definitionId="org.limy.eclipse.code.accessor.CreateSetterAction"
+         />
+         <action
+               menubarPath="org.limy.eclipse.menu/additions"
+               class="org.limy.eclipse.code.accessor.CreateGetterAction"
+               label="%CreateGetterAction.label"
+               id="org.limy.eclipse.code.accessor.CreateGetterAction"
+               definitionId="org.limy.eclipse.code.accessor.CreateGetterAction"
+         />
+         <action
+               menubarPath="org.limy.eclipse.menu/additions"
+               class="org.limy.eclipse.code.accessor.ModifyAccessorJavadocAction"
+               label="%ModifyAccessorJavadocAction.label"
+               id="org.limy.eclipse.code.accessor.ModifyAccessorJavadocAction"
+               definitionId="org.limy.eclipse.code.accessor.ModifyAccessorJavadocAction"
+         />
+
+         <action
+               menubarPath="org.limy.eclipse.menu/additions"
+               class="org.limy.eclipse.code.di.CreateImplInterfaceAction"
+               label="%CreateImplInterfaceAction.label"
+               id="org.limy.eclipse.code.di.CreateImplInterfaceAction"
+               definitionId="org.limy.eclipse.code.di.CreateImplInterfaceAction"
+         />
+
+         <action
+               menubarPath="org.limy.eclipse.menu/additions"
+               class="org.limy.eclipse.code.javadoc.LimyAddJavadocAction"
+               label="%LimyAddJavadocAction.label"
+               id="org.limy.eclipse.code.javadoc.LimyAddJavadocAction"
+               definitionId="org.limy.eclipse.code.javadoc.LimyAddJavadocAction"
+         />
+
+         <action
+               menubarPath="org.limy.eclipse.menu/additions"
+               class="org.limy.eclipse.code.etc.CreateIbatisXmlAction"
+               label="%CreateIbatisXmlAction.label"
+               id="org.limy.eclipse.code.etc.CreateIbatisXmlAction"
+               definitionId="org.limy.eclipse.code.etc.CreateIbatisXmlAction"
+         />
+
+      </actionSet>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.commands">
+
+     <category
+            name="LimyEclipse"
+            description="Limy Eclipse Category"
+            id="org.limy.eclipse.category">
+     </category>
+
+     <command
+            name="%AddResourceHeaderAction.command.name"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.code.header.AddResourceHeaderAction">
+     </command>
+     <command
+            name="%AddJavaHeaderAction.command.name"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.code.header.AddJavaHeaderAction">
+     </command>
+     <command
+            name="%ConvertJavaCharsetAction.command.name"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.code.header.ConvertJavaCharsetAction">
+     </command>
+
+     <command
+            name="%CreateAllPublicAction.command.name"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.code.accessor.CreateAllPublicAction">
+     </command>
+     <command
+            name="%CreateAccessorAction.command.name"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.code.accessor.CreateAccessorAction">
+     </command>
+     <command
+            name="%CreateSetterAction.command.name"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.code.accessor.CreateSetterAction">
+     </command>
+     <command
+            name="%CreateGetterAction.command.name"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.code.accessor.CreateGetterAction">
+     </command>
+     <command
+            name="%ModifyAccessorJavadocAction.command.name"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.code.accessor.ModifyAccessorJavadocAction">
+     </command>
+
+     <command
+            name="%CreateImplInterfaceAction.command.name"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.code.di.CreateImplInterfaceAction">
+     </command>
+
+     <command
+            name="%LimyAddJavadocAction.command.name"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.code.javadoc.LimyAddJavadocAction">
+     </command>
+
+     <command
+            name="%CreateIbatisXmlAction.command.name"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.code.etc.CreateIbatisXmlAction">
+     </command>
+
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.bindings">
+
+      <key
+            sequence="Ctrl+C Ctrl+X Ctrl+H"
+            commandId="org.limy.eclipse.code.header.AddJavaHeaderAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X Ctrl+Z"
+            commandId="org.limy.eclipse.code.header.ConvertJavaCharsetAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+
+      <key
+            sequence="Ctrl+C Ctrl+X Ctrl+A"
+            commandId="org.limy.eclipse.code.accessor.CreateAllPublicAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X Ctrl+C"
+            commandId="org.limy.eclipse.code.accessor.CreateAccessorAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X Ctrl+S"
+            commandId="org.limy.eclipse.code.accessor.CreateSetterAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X Ctrl+G"
+            commandId="org.limy.eclipse.code.accessor.CreateGetterAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+      <key
+            sequence="Ctrl+C Ctrl+X Ctrl+M"
+            commandId="org.limy.eclipse.code.accessor.ModifyAccessorJavadocAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+
+      <key
+            sequence="Ctrl+C Ctrl+X Ctrl+I"
+            commandId="org.limy.eclipse.code.di.CreateImplInterfaceAction"
+            schemeId="org.eclipse.ui.emacsAcceleratorConfiguration"/>
+
+      <key
+            sequence="Alt+Shift+J"
+            contextId="org.eclipse.jdt.ui.javaEditorScope"
+            commandId="org.limy.eclipse.code.javadoc.LimyAddJavadocAction"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+
+   </extension>
+
+</plugin>

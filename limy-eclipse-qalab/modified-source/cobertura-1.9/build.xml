@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="modified-cobertura" default="makezip" basedir=".">
+
+	<description>
+    Cobertura - http://cobertura.sourceforge.net/
+    The copyright for this program is retained by its contributors
+    See the included COPYRIGHT file for a complete list of contributors
+    Cobertura is licensed under the GNU General Public License
+    Cobertura comes with ABSOLUTELY NO WARRANTY
+	</description>
+
+	<property file="build.properties" />
+
+	<path id="base.path">
+		<fileset dir="../../resource">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="init">
+		<!-- Insert our version number in a file. -->
+		<!--
+		<filter token="version" value="${version}" />
+		<copy file="${etc.dir}/plugin.xml" todir="${build.dir}" filtering="true" overwrite="true" />
+		-->
+	</target>
+
+	<target name="compile" depends="init">
+		<mkdir dir="${build.classes.dir}" />
+
+		<javac fork="true" srcdir="${src.dir}" destdir="${build.classes.dir}" debug="true" target="1.4" source="1.4">
+			<compilerarg value="-Xlint:unchecked" compiler="javac1.5"/>
+			<classpath location="${build.classes.dir}" />
+			<classpath refid="base.path" />
+		</javac>
+
+		<!-- Copy jar resources (css, images, log4j property file, etc.) -->
+		<copy todir="${build.classes.dir}">
+			<fileset dir="${src.dir}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="jar" depends="compile">
+		<mkdir dir="${build.dist.dir}" />
+
+		<!-- the standard jar for Cobertura -->
+		<jar jarfile="../../resource/lib/cobertura.jar" compress="true">
+			<fileset dir="${build.classes.dir}">
+				<include name="**/*.class" />
+			</fileset>
+			<fileset dir="${etc.dir}">
+				<include name="log4j.properties" />
+				<include name="tasks.properties" />
+			</fileset>
+			<fileset dir="${src.dir}">
+				<exclude name="**/*.java" />
+				<exclude name="**/package.html" />
+			</fileset>
+			<manifest>
+				<attribute name="Specification-Title" value="${description}"/>
+				<attribute name="Specification-Vendor" value="Cobertura"/>
+				<attribute name="Specification-Version" value="${version}"/>
+				<attribute name="Implementation-Title" value="${description}"/>
+				<attribute name="Implementation-Vendor" value="Cobertura"/>
+				<attribute name="Implementation-Vendor-Id" value="net.sourceforge.cobertura"/>
+				<attribute name="Implementation-Version" value="${version}"/>
+			</manifest>
+		</jar>
+
+	</target>
+	
+	<target name="makezip" depends="jar">
+		<zip destfile="../../cobertura-${version}-modified-source.zip">
+			<fileset dir="." excludes="build/**">
+			</fileset>
+		</zip>
+	</target>
+
+	<target name="clean" description="Remove all files created by the build process.">
+		<delete dir="${build.dir}" />
+		<delete>
+			<fileset dir="${basedir}">
+				<include name="cobertura.jar" />
+				<include name="cobertura.ser" />
+				<include name="cobertura.ser.lock" />
+				<include name="cobertura-*-bin.*" />
+				<include name="cobertura-*-src.*" />
+				<include name="cobertura-*-eclipse-plugin.zip" />
+			</fileset>
+		</delete>
+	</target>
+
+</project>
