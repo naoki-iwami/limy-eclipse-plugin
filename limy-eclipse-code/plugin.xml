@@ -116,6 +116,13 @@
                definitionId="org.limy.eclipse.code.etc.CreateIbatisXmlAction"
          />
 
+         <action
+               class="org.limy.eclipse.code.etc.FoldingAction"
+               label="%JavaEditorFoldingAction.label"
+               id="org.limy.eclipse.code.etc.FoldingAction"
+               definitionId="org.limy.eclipse.code.etc.FoldingAction"
+         />
+
       </actionSet>
    </extension>
 
@@ -188,6 +195,12 @@
             id="org.limy.eclipse.code.etc.CreateIbatisXmlAction">
      </command>
 
+     <command
+            name="%JavaEditorFoldingAction.command.name"
+            categoryId="org.limy.eclipse.category"
+            id="org.limy.eclipse.code.etc.FoldingAction">
+     </command>
+
    </extension>
 
    <extension
@@ -232,6 +245,12 @@
             sequence="Alt+Shift+J"
             contextId="org.eclipse.jdt.ui.javaEditorScope"
             commandId="org.limy.eclipse.code.javadoc.LimyAddJavadocAction"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+
+      <key
+            sequence="Ctrl+;"
+            contextId="org.eclipse.jdt.ui.javaEditorScope"
+            commandId="org.limy.eclipse.code.etc.FoldingAction"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
 
    </extension>

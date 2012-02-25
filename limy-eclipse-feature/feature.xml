@@ -2,7 +2,7 @@
 <feature
       id="org.limy.eclipse.feature"
       label="Limy Eclipse"
-      version="1.5.5"
+      version="1.5.7"
       provider-name="limy.org">
    <install-handler/>
 
