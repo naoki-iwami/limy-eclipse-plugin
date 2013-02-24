@@ -27,7 +27,7 @@ import org.eclipse.jface.text.IDocumentExtension4;
  * @author Naoki Iwami
  */
 public final class PropertyDocumentUtils {
-    
+
     /**
      * private constructor
      */
@@ -101,7 +101,7 @@ public final class PropertyDocumentUtils {
         String lines = document.get();
         for (int i = 0; i < lines.length(); i++) {
             char c = lines.charAt(i);
-            if (c < 0x100) {
+            if (c <= 127) {
                 buff.append(c);
             } else {
                 buff.append("\\u");
