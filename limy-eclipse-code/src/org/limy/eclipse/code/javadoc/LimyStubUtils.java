@@ -192,7 +192,7 @@ public final class LimyStubUtils {
         // 展開後のテンプレート文字列を取得
         String str = buffer.getString();
         
-        if (Strings.containsOnlyWhitespaces(str)) {
+        if (containsOnlyWhitespaces(str)) {
             return null;
         }
         TemplateVariable position = findTagVariable(buffer);
@@ -421,4 +421,14 @@ public final class LimyStubUtils {
         }
     }
     
+    private static boolean containsOnlyWhitespaces(String s) {
+        int size = s.length();
+        for(int i = 0; i < size; ++i) {
+            if(!Character.isWhitespace(s.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
