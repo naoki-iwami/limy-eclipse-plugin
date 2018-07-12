@@ -126,7 +126,7 @@ public class CoberturaSupport {
         int allLines = classData.getNumberOfValidLines();
         int allBranchs = classData.getNumberOfValidBranches();
         
-        Map<String, String> attrs = new HashMap<String, String>();
+        Map<String, Object> attrs = new HashMap<String, Object>();
         attrs.put(LimyQalabMarker.ALL_LINE_NUMBER, Integer.toString(allLines));
         attrs.put(LimyQalabMarker.ALL_BRANCH_NUMBER, Integer.toString(allBranchs));
         attrs.put(LimyQalabMarker.COVERAGE_LINE, Integer.toString(coverageLines));

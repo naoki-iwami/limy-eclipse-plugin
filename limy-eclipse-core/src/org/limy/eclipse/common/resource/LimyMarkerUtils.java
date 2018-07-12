@@ -82,7 +82,7 @@ public final class LimyMarkerUtils {
      */
     public static void addMarker(String markerId,
             IResource resource,
-            Map<String, ? extends Object> attrs) throws CoreException {
+            Map<String, Object> attrs) throws CoreException {
         
         MarkerUtilities.createMarker(resource, attrs, markerId);
     }

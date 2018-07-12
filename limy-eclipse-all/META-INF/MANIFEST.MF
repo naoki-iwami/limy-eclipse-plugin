@@ -6,7 +6,6 @@ Bundle-Version: 1.0.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.eclipse.core.runtime.compatibility,
  org.eclipse.jdt.core,
  org.eclipse.ui.ide,
  org.eclipse.jface.text,
